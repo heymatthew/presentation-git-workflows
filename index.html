@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-        <title>Adavnced Git: Workflows for Developers</title>
+        <title>Advanced Git: Workflows for Developers</title>
 
 		<meta name="description" content="Personal, Team and Client workflows in Git">
 		<meta name="author" content="Matthew B. Gray">
@@ -212,15 +212,76 @@
 
 							1. Go to https://github.com/icefox/git-achievements
 							2. Fork that repo
-							3. Go to your forked project, and clone it!
-
+							3. Go to your forked project, and clone it
 							----------------------------------------
 
-							No account?
+							No account? You can still run it locally
 							```
 							git clone https://github.com/icefox/git-achievements.git
 							```
 						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Setup
+							Alias git-achievements in your shellrc file
+
+							```
+							vim ~/.bashrc
+							```
+							```
+							export PATH="$PATH:~/git/git-achievements"
+							alias git="git-achievements"
+							```
+							```
+							git config --global achievement.upload "true"
+							```
+
+							Keep your achievements after the course, save this
+							```
+							~/.git-achievements.log
+							```
+						</script>
+					</section>
+					<section>
+						<!-- hacked in position:absolute to stop this page scrolling -->
+						<h3>Some fun achievements I've unlocked</h3>
+						<div class="fragment current-visible" style="position:absolute;">
+							<p>--------------------------------------------------------------------------------</p>
+							<p>Apprentice Gipsy (Level 3)</p>
+							<p>Create, list, delete a tag signed with GPG using git tag</p>
+							<p>--------------------------------------------------------------------------------</p>
+						</div>
+						<div class="fragment current-visible" style="position:absolute;">
+							<p>--------------------------------------------------------------------------------</p>
+							<p>Cherry Picker</p>
+							<p>Used git-cherry-pick to add a sha from another branch into the current branch.</p>
+							<p>--------------------------------------------------------------------------------</p>
+						</div>
+						<div class="fragment current-visible" style="position:absolute;">
+							<p>--------------------------------------------------------------------------------</p>
+							<p>Banker (Level 5)</p>
+							<p>Join two or more development histories together with git-merge.</p>
+							<p>--------------------------------------------------------------------------------</p>
+						</div>
+						<div class="fragment current-visible" style="position:absolute;">
+							<p>--------------------------------------------------------------------------------</p>
+							<p>Apprentice Thug (Level 3)</p>
+							<p>Forced pushed a branch with git-push -f</p>
+							<p>--------------------------------------------------------------------------------</p>
+						</div>
+						<div class="fragment current-visible" style="position:absolute;">
+							<p>--------------------------------------------------------------------------------</p>
+							<p>Let there be light</p>
+							<p>Commit without a parent.</p>
+							<p>--------------------------------------------------------------------------------</p>
+						</div>
+						<div class="fragment current-visible">
+							<p>If there's more interest...<p>
+							<p><a href="pages/git-achievements/index.html" target="_blank">
+								--> @saltcrab's achievements -->
+							</a></p>
+						</div>
 					</section>
 					<section>
 						<h3>Typical git workflow</h3>
@@ -232,6 +293,99 @@
 					<section data-markdown>
 						<script type="text/template">
 							### Context hunting with Bisect, Blame, Log and Pickaxe
+							----------------------------------------
+							This is a BEFORE YOU START thing, helps isolate and triage
+
+							Context is important when you start to
+
+							1. Avoid regressing your codebase
+							2. Find out if code is still under warantee
+							3. Get help if you get stuck, seek out a human
+							----------------------------------------
+
+							* Log - Show commit logs
+							* Bisect - binary search for change that introduced a bug
+							* Blame - revision and author last modified for lines of a file
+							* Pickaxe - Search commit diffs for changes
+						</script>
+					</section>
+					<section>
+						<div data-markdown>
+							<script type="text/template">
+								### Context hunting / Isolate, Triage
+								* Log <-- you are here
+								* Bisect
+								* Blame
+								* Pickaxe
+								----------------------------------------
+							</script>
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute;">
+							<script type="text/template">
+								Regular log
+								```
+								git log
+								```
+								![regular git log](images/git-log.png)
+							</script>
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute;">
+							<script type="text/template">
+								Show me contents of patches
+								```
+								git log -p
+								```
+								![patch mode git log](images/git-log-p.png)
+							</script>
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute;">
+							<script type="text/template">
+								Show me a summary of patches
+								```
+								git log --stat
+								```
+								![stats](images/git-log-stat.png)
+							</script>
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute;">
+							<script type="text/template">
+								Find changes associated with text in a commit message:
+								```
+								git log --grep '$search_term'
+								git log --grep 'bug#1234'
+								```
+								![grep for messages](images/git-log-grep-term.png)
+							</script>
+						</div>
+					</section>
+					<section data-markdown class="fragment current-visible" style="position:absolute;">
+						<script type="text/template">
+							### Context hunting / Isolate, Triage
+							* Log
+							* Bisect <-- you are here
+							* Blame
+							* Pickaxe
+							----------------------------------------
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Context hunting / Isolate, Triage
+							* Log
+							* Bisect
+							* Blame <-- you are here
+							* Pickaxe
+							----------------------------------------
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Context hunting / Isolate, Triage
+							* Log
+							* Bisect
+							* Blame
+							* Pickaxe <-- you are here
+							----------------------------------------
 						</script>
 					</section>
 					<section data-markdown>
