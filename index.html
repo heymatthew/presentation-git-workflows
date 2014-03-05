@@ -40,7 +40,8 @@
 		<div class="reveal">
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section class="intro">
+				<!-- Cover slide -->
+				<section>
 					<h1>Advanced Git</h1>
 					<h2>Workflows for Developers</h2>
 
@@ -74,24 +75,20 @@
 					</aside>
 				</section>
 
+				<!-- Entertaining gifs -->
 				<section>
-					<section>
+					<section data-background-image="images/3-steps.gif">
 						<h3>How I hope you feel when you walk out of this room<h3>
-						<div><img src="images/3-steps.gif"></div>
 					</section>
-					<section>
+					<section data-background-image="images/git-to-svn-users.gif">
 						<h3>How an svn user sees git workflow</h3>
-						<img src="images/git-to-svn-users.gif">
-					</section>
-					<section>
-						<h3>How it feels when you're doing it right</h3>
-						<img src="images/swag.gif">
 					</section>
 				</section>
 
+				<!-- Course Overview -->
 				<section data-markdown>
 					<script type="text/template">
-						## Overview
+						## Course Overview
 						--------------------------------------------------------------------------------
 						* Getting Started
 						* Personal workflows
@@ -100,6 +97,9 @@
 					</script>
 				</section>
 
+				<section data-background-image="images/swag.gif"></section>
+
+				<!-- Setup your git fu, review some basic stuff -->
 				<section>
 					<section data-markdown>
 						<!--data-background-transition="slide"-->
@@ -165,6 +165,7 @@
 					</section>
 				</section>
 
+				<!-- Personal workflows -->
 				<section>
 					<section data-markdown>
 						<script type="text/template">
@@ -185,7 +186,48 @@
 					<section data-markdown>
 						<script type="text/template">
 							### Unlocking achievements, making git a bit more fun
+
+							Unlock Achievements!
+
+							Track friends over RSS!
+
+							Flaunt your achievements with a Splashy page!
 						</script>
+					</section>
+					<section
+						data-markdown
+						data-background-image="images/fork.gif"
+						data-background-repeat="repeat"
+						data-background-size="400px"
+					>
+						<script type="text/template">
+							![fork](images/github-git-acheivements.png)
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Unlocking achievements, making git a bit more fun
+							----------------------------------------
+							If you have a github account
+
+							1. Go to https://github.com/icefox/git-achievements
+							2. Fork that repo
+							3. Go to your forked project, and clone it!
+
+							----------------------------------------
+
+							No account?
+							```
+							git clone https://github.com/icefox/git-achievements.git
+							```
+						</script>
+					</section>
+					<section>
+						<h3>Typical git workflow</h3>
+						<img
+							src="images/individual-workflow.svg"
+							height="500px"
+						>
 					</section>
 					<section data-markdown>
 						<script type="text/template">
@@ -266,7 +308,7 @@
 					</section>
 				</section>
 
-				<section data-background-image="images/dazzle.gif">
+				<section data-background-image="images/end.gif">
 					<h1 style="text-transform:none">
 						Thanks! - <a href="https://twitter.com/saltcrab">@saltcrab</a>
 					</h1>
