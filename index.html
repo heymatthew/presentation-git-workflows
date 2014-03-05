@@ -309,7 +309,7 @@
 							* Pickaxe - Search commit diffs for changes
 						</script>
 					</section>
-					<section>
+					<section> <!-- Git log -->
 						<div data-markdown>
 							<script type="text/template">
 								### Context hunting / Isolate, Triage
@@ -358,17 +358,53 @@
 							</script>
 						</div>
 					</section>
-					<section data-markdown class="fragment current-visible" style="position:absolute;">
-						<script type="text/template">
-							### Context hunting / Isolate, Triage
-							* Log
-							* Bisect <-- you are here
-							* Blame
-							* Pickaxe
-							----------------------------------------
-						</script>
+					<section> <!-- Git bisect -->
+						<div data-markdown>
+							<script type="text/template">
+								### Context hunting / Isolate, Triage
+								* Log
+								* Bisect <-- you are here
+								* Blame
+								* Pickaxe
+								----------------------------------------
+							</script>
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute;">
+							<script type="text/template">
+								To start bisecting, you use these commands
+								```
+								git bisect start $bad_commit $good_commit
+								```
+								'Unwanted' behaviour?
+								```
+								git bisect bad
+								```
+								'Wanted' behaviour?
+								```
+								git bisect good
+								```
+								Tidy up
+								```
+								git bisect reset
+								```
+							</script>
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute;">
+							<script type="text/template">
+								Sometimes it's guess work
+								```
+								git bisect skip
+								```
+
+								Sometimes it's complicated to get back to your guess spot
+								```
+								git bisect log > bisect.log
+								git bisect reply bisect.log
+								```
+							</script>
+						</div>
 					</section>
-					<section data-markdown>
+					<section data-markdown> <!-- Git blame -->
 						<script type="text/template">
 							### Context hunting / Isolate, Triage
 							* Log
@@ -378,15 +414,17 @@
 							----------------------------------------
 						</script>
 					</section>
-					<section data-markdown>
-						<script type="text/template">
-							### Context hunting / Isolate, Triage
-							* Log
-							* Bisect
-							* Blame
-							* Pickaxe <-- you are here
-							----------------------------------------
-						</script>
+					<section> <!-- Git pickaxe -->
+						<div data-markdown>
+							<script type="text/template">
+								### Context hunting / Isolate, Triage
+								* Log
+								* Bisect
+								* Blame
+								* Pickaxe <-- you are here
+								----------------------------------------
+							</script>
+						</div>
 					</section>
 					<section data-markdown>
 						<script type="text/template">
