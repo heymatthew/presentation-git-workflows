@@ -74,38 +74,153 @@
 					</aside>
 				</section>
 
+				<section>
+					<section>
+						<h3>How I hope you feel when you walk out of this room<h3>
+						<div><img src="images/3-steps.gif"></div>
+					</section>
+					<section>
+						<h3>How an svn user sees git workflow</h3>
+						<img src="images/git-to-svn-users.gif">
+					</section>
+					<section>
+						<h3>How it feels when you're doing it right</h3>
+						<img src="images/swag.gif">
+					</section>
+				</section>
+
 				<!-- Example of nested vertical slides -->
+				<section data-markdown>
+					<script type="text/template">
+						## Overview
+						--------------------------------------------------------------------------------
+						* Getting Started
+						* Personal workflows
+						* Team workflows
+						* Client workflows
+					</script>
+				</section>
+
 				<section>
 					<section data-markdown>
+						<!--data-background-transition="slide"-->
 						<script type="text/template">
-							## Overview
+							* **Getting Started** <-- you are here
+							* Personal workflows
+							* Team workflows
+							* Client workflows
 							--------------------------------------------------------------------------------
-							0. Getting Started
-							1. Personal workflows
-							2. Team workflows
-							3. Client workflows (managing release cycles)
+							## Overview: Getting started
+							- Basic config for these machines
+							- Good config defaults
+							- Quick review of basic git
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Basic config for these machines
 
-							Personal workflows ~> Team workflows ~> Client workflows
+							Git would like you to specify
+
+							1. Your full name
+							1. Your email address
+							1. Your favourite text editor
+
+							```
+							git config --global user.name "Dr. Henry Killinger"
+							git config --global user.email "fu@bar.baz"
+							git config --global core.editor vim
+							```
+
+							All these settings are storred in **~/.gitconfig**
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Sane defaults for day to day use
+
+							* Use colour to highlight branches and diffs
+							* Make sure you only push the branch you're on
+							* Show branches and tags in git log
+							* Setup rebase as the default strategy for git pull
+
+							```
+							git config --global color.ui always
+							git config --global push.default current
+							git config --global log.decorate full
+							git config --global branch.rebase true
+							git config --global branch.autosetuprebase always
+							```
+
+							All these settings are storred in **~/.gitconfig**
 						</script>
 					</section>
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
+						<h3>Quick review of basic git</h3>
+						<p>
+							<a href="pages/git-cheatsheet.html" target="_blank">
+								http://ndpsoftware.com/git-cheatsheet.html
+							</a>
+						</p>
+						<div><img src="images/qr-cheatsheet.png" style="border:0"></div>
 					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-						</a>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							* Getting Started
+							* **Personal workflows** <-- you are here
+							* Team workflows
+							* Client workflows
+							--------------------------------------------------------------------------------
+							## Overview: Personal workflows
+							- Unlocking achievements, making git a bit more fun
+							- Context hunting with Bisect, Blame, Log and Pickaxe
+							- Mastering branches with rebase and reset
+							- Audit your work interactively with your staging area
+							- Manage merge conflicts like a pro
+							- Rewrite history with interactive rebase
+						</script>
 					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							* Getting Started
+							* Personal workflows
+							* **Team workflows** <-- you are here
+							* Client workflows
+							--------------------------------------------------------------------------------
+							## Overview: Team workflows
+							- Quickly setup local, network accessible repos
+							- Working with people who don't enjoy source control
+							- Manage conflicts like a pro
+							- Clean history, rebase verses merge
+						</script>
 					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							* Getting Started
+							* Personal workflows
+							* Team workflows
+							* **Client workflows** <-- you are here
+							--------------------------------------------------------------------------------
+							## Overview: Client workflows
+							- Strategies for dealing with client requirements
+							- Strategies for database patching on branches
+						</script>
+					</section>
+				</section>
+
+				<section data-background-image="images/end.gif">
+					<big>
+						Thanks! <a href="https://twitter.com/saltcrab">@saltcrab</a>
+					</big>
 				</section>
 
 				<section>
@@ -387,7 +502,8 @@ function linkify( selector ) {
 				center: true,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+				//transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+				transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
 
 				// Parallax scrolling
 				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html><head>
+  <!-- Google Analytics Content Experiment code -->
+  <script async="" src="static/cbgapi.loaded_1"></script><script async="" src="static/cbgapi.loaded_0"></script><script gapi_processed="true" src="static/plusone.js" async="" type="text/javascript"></script><script src="static/ga.js" async="" type="text/javascript"></script><script>function utmx_section(){}function utmx(){}(function(){var
+  k='2602198-1',d=document,l=d.location,c=d.cookie;
+  if(l.search.indexOf('utm_expid='+k)>0)return;
+  function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+  indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+  length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+  '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+  '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+  '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+  valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+  '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+  </script><script src="static/ga_exp.js" type="text/javascript" charset="utf-8"></script><script>utmx('url','A/B');</script>
+  <!-- End of Google Analytics Content Experiment code -->
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Git Cheatsheet • NDP Software</title>
+  <meta name="description" content="Interactive Git Cheatsheet, categorizing commands based on what they affect.">
+  <meta name="keywords" content="Git Cheatsheet Cheat sheet Kuleta chuleta chivo machete torpedo acordeón cribsheet crib sheet antisèche Planquadratangabe Nachschlagewerk">
+  <link rel="author" href="https://plus.google.com/111325326458556506982/posts?rel=author">
+  <link rel="stylesheet" href="static/1200.css" type="text/css">
+  <link rel="stylesheet" href="static/stylesheet.css" type="text/css">
+  <script src="static/jquery.js" type="text/javascript"></script>
+  <script src="static/csster.js"></script>
+  <script src="static/styles.js"></script>
+  <script src="static/cookies.js"></script>
+  <script src="static/commands.js"></script>
+  <script src="static/base.js"></script>
+  <script src="static/git-cheatsheet.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1458227-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
+<style type="text/css">html,body { margin: 0;padding: 0;background: url(git-cheatsheet/images/vCanvas.jpg);}a,a:link,a:visited { color: #cd0074;text-decoration: none;}a:hover { color: #990057;text-decoration: underline;}em:before { opacity: 0.5;content: "<";}em:after { opacity: 0.5;content: ">";}span.optional:before { opacity: 0.5;content: "[";}span.optional:after { opacity: 0.5;content: "]";}#hd { }#hd * { margin: 0;padding: 0;}#hd h1 { font: 50px ImpactLabelRegular, ImpactLabelReversedRegular, verdana;}#hd h2 { text-align: right;position: absolute;right: 0;top: 44px;color: #cd0074;background-color: #d9b0b0;font: normal 21px ImpactLabelReversedRegular,ImpactLabelRegular, verdana;}#hd ul { margin-top: 2px;margin-bottom: -10px;}#hd ul li { font: 16px/20px courier, monospaced;display: block;text-align: right;color: #cc338a;}#hd h6 { text-align: right;color: #b34d86;position: fixed;bottom: 3px;left: 20px;font: 12px courier, monospaced;z-index: 1000;}#hd h4 { margin-top: 5px;margin-bottom: -15px;}#hd .lang { cursor: pointer;background-color: #dc9898;color: #ede9e9;border: 1px solid transparent;padding: 1px 2px;font: 12px courier, monospaced;}#hd .lang.selected { background-color: #cf7272;color: #fff;}#hd .lang.selected:hover { text-decoration: none;}#hd .lang:hover { color: #fff;}#diagram { margin-top: 20px;position: relative;height: 6.3in;margin-bottom: 2cm;padding: 1px 0;}.loc { position: relative;height: 100%;cursor: pointer;opacity: 0.7;-moz-box-shadow: 3px 3px 2px #ccc;-webkit-box-shadow: 3px 3px 2px #ccc;box-shadow: 3px 3px 2px #ccc;-ms-filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#ccc');filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#ccc');}.loc .bar { position: absolute;left: 45%;top: 50px;border: 1px dashed white;border-top: none;width: 10px;height: 535px;}.loc h5 { position: absolute;top: 0;margin: 0;width: 100%;text-align: center;padding: 11px 0 20px 0;font: 30px ImpactLabelReversedRegular, ImpactLabelRegular, verdana;color: #333;}.loc p { bottom: 0;position: absolute;padding: 0 20px;font: 15px courier, monospaced;color: white;visibility: hidden;}.loc.hovered { -moz-box-shadow: 2px 2px 6px #999;-webkit-box-shadow: 2px 2px 6px #999;box-shadow: 2px 2px 6px #999;-ms-filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999');filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999');}.loc.current { -moz-box-shadow: 4px 4px 6px #555;-webkit-box-shadow: 4px 4px 6px #555;box-shadow: 4px 4px 6px #555;-ms-filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#555');filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#555');}.loc.current p { visibility: visible;}.loc.current h5 { color: white;}#commands { position: absolute;top: 85px;left: 0;width: 100%;font: 15px courier, monospaced;height: 0;margin: 0;padding: 0;}#commands > dd { display: none;}#commands > dt { color: #dddddd;margin-bottom: 4px;float: left;clear: left;padding: 2px 5px;line-height: 13px;position: relative;opacity: 0.3;display: none;cursor: pointer;}#commands > dt.selected { padding: 2px 5px;opacity: 0.8;-moz-box-shadow: 1px 1px 3px #999;-webkit-box-shadow: 1px 1px 3px #999;box-shadow: 1px 1px 3px #999;-ms-filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999');filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#999');}#commands > dt.up { color: #ffffff;}#commands > dt.up > .arrow { width: 0;height: 0;border: 9px solid transparent;position: absolute;right: -18px;top: 0;}#commands > dt.dn { color: #ffffff;}#commands > dt.dn > .arrow { width: 0;height: 0;border: 9px solid transparent;position: absolute;left: -18px;top: 0;}#commands > dt.status { border-color: #b3a2a2;background-color: #846C6C;color: #f8f7f7;}#commands > dt.status.selected { background-color: #766060;}#info { position: fixed;bottom: 0;left: 0;width: 100%;padding: 10px 0 20px 0;font: 15px/20px courier, monospaced;z-index: 1;}#info .screen { z-index: -1;position: absolute;left: -20px;top: 0;height: 100%;width: 150%;background-color: #F6EBD9;opacity: 0.8;}#info .cmd,#info .doc { min-height: 3em;font-size: 18px;}#info .cmd { float: left;margin-right: 20px;width: 35%;color: black;text-align: right;text-decoration: underline;}#info .doc { float: left;width: 55%;color: #4d4d4d;}#info .doc code { color: black;font-weight: 600;}#remote_repo .bar, #local_repo .bar { top: 78px;height: 507px;}#stash { border: 1px dotted transparent;color: #bf3030;background-color: #b3a2a2;}#stash .bar { border-color: #6e1c1c;}body.stash #stash { color: white;background-color: #c03030;}body.stash #commands > dt.stash { display: block;opacity: 0.9;}body.stash #commands > dt.stash.selected { opacity: 1;}body.stash #commands { }body.stash #commands dt.up { background-color: #b43c3c;border-color: #b43c3c;}body.stash #commands dt.up > .arrow { border-left-color: #b43c3c;}body.stash #commands dt.up.selected { background-color: #8e2f2f;}body.stash #commands dt.up.selected > .arrow { border-left-color: #8e2f2f;}body.stash #commands dt.dn { background-color: #a13636;border-color: #a13636;}body.stash #commands dt.dn > .arrow { border-right-color: #a13636;}body.stash #commands dt.dn.selected { background-color: #7a2929;}body.stash #commands dt.dn.selected > .arrow { border-right-color: #7a2929;}#workspace { border: 1px dotted transparent;color: #f15050;background-color: #e3c4c4;}#workspace .bar { border-color: #cb1010;}body.workspace #workspace { color: white;background-color: #f15050;}body.workspace #commands > dt.workspace { display: block;opacity: 0.9;}body.workspace #commands > dt.workspace.selected { opacity: 1;}body.workspace #commands { }body.workspace #commands dt.up { background-color: #e75a5a;border-color: #e75a5a;}body.workspace #commands dt.up > .arrow { border-left-color: #e75a5a;}body.workspace #commands dt.up.selected { background-color: #e12d2d;}body.workspace #commands dt.up.selected > .arrow { border-left-color: #e12d2d;}body.workspace #commands dt.dn { background-color: #e44444;border-color: #e44444;}body.workspace #commands dt.dn > .arrow { border-right-color: #e44444;}body.workspace #commands dt.dn.selected { background-color: #d61f1f;}body.workspace #commands dt.dn.selected > .arrow { border-right-color: #d61f1f;}#index { border: 1px dotted transparent;color: #ff9640;background-color: #e9d1be;}#index .bar { border-color: #db6300;}body.index #index { color: white;background-color: #ff9742;}body.index #commands > dt.index { display: block;opacity: 0.9;}body.index #commands > dt.index.selected { opacity: 1;}body.index #commands { }body.index #commands dt.up { background-color: #f6984c;border-color: #f6984c;}body.index #commands dt.up > .arrow { border-left-color: #f6984c;}body.index #commands dt.up.selected { background-color: #f37c1b;}body.index #commands dt.up.selected > .arrow { border-left-color: #f37c1b;}body.index #commands dt.dn { background-color: #f48a34;border-color: #f48a34;}body.index #commands dt.dn > .arrow { border-right-color: #f48a34;}body.index #commands dt.dn.selected { background-color: #e96f0c;}body.index #commands dt.dn.selected > .arrow { border-right-color: #e96f0c;}#local_repo { border: 1px dotted transparent;color: #cd0074;background-color: #cc66a0;}#local_repo .bar { border-color: #66003a;}body.local_repo #local_repo { color: white;background-color: #cc0074;}body.local_repo #commands > dt.local_repo { display: block;opacity: 0.9;}body.local_repo #commands > dt.local_repo.selected { opacity: 1;}body.local_repo #commands { }body.local_repo #commands dt.up { background-color: #c20a72;border-color: #c20a72;}body.local_repo #commands dt.up > .arrow { border-left-color: #c20a72;}body.local_repo #commands dt.up.selected { background-color: #910856;}body.local_repo #commands dt.up.selected > .arrow { border-left-color: #910856;}body.local_repo #commands dt.dn { background-color: #aa0964;border-color: #aa0964;}body.local_repo #commands dt.dn > .arrow { border-right-color: #aa0964;}body.local_repo #commands dt.dn.selected { background-color: #790647;}body.local_repo #commands dt.dn.selected > .arrow { border-right-color: #790647;}#remote_repo { border: 1px dotted transparent;color: #bf3030;background-color: #b3a2a2;}#remote_repo .bar { border-color: #6e1c1c;}body.remote_repo #remote_repo { color: white;background-color: #c03030;}body.remote_repo #commands > dt.remote_repo { display: block;opacity: 0.9;}body.remote_repo #commands > dt.remote_repo.selected { opacity: 1;}body.remote_repo #commands { }body.remote_repo #commands dt.up { background-color: #b43c3c;border-color: #b43c3c;}body.remote_repo #commands dt.up > .arrow { border-left-color: #b43c3c;}body.remote_repo #commands dt.up.selected { background-color: #8e2f2f;}body.remote_repo #commands dt.up.selected > .arrow { border-left-color: #8e2f2f;}body.remote_repo #commands dt.dn { background-color: #a13636;border-color: #a13636;}body.remote_repo #commands dt.dn > .arrow { border-right-color: #a13636;}body.remote_repo #commands dt.dn.selected { background-color: #7a2929;}body.remote_repo #commands dt.dn.selected > .arrow { border-right-color: #7a2929;}</style><style type="text/css">.internalVimiumHintMarker {position:absolute;background-color:yellow;color:black;font-weight:bold;font-size:12px;padding:0 1px;line-height:100%;width:auto;display:block;border:1px solid #E3BE23;z-index:99999999;font-family:"Helvetica Neue", "Helvetica", "Arial", "Sans";top:-1px;left:-1px;}.internalVimiumHintMarker > .matchingCharacter {color:#C79F0B;}</style></head>
+
+<body>
+<div id="hd" class="container_16">
+  <div class="grid_8 alpha">
+    <h1 data-docs="Categorize Git's commands based on what they affect.">Git Cheatsheet</h1>
+    <h2 data-docs="another visualization from Andrew Peterson, NDP Software."><a href="http://ndpsoftware.com/">an
+      interaction
+      from NDP Software</a></h2>
+    <h6>(c) <a href="https://plus.google.com/b/112580895511032559572/112580895511032559572/about?rel=author">Andrew Peterson</a> 2009-2014 All Rights Reserved.
+      French translation by <a href="http://blogs.media-tips.com/bernard.opic/">Bernard Opic</a>
+    </h6>
+    <h4>
+      <a class="lang selected" data-lang="en">en</a>
+      <a class="lang" data-lang="fr" data-docs="French translation by Bernard Opic">fr</a>
+      <a class="lang" data-lang="zh-cn" data-docs="Simplified Chinese translation by Ace Code">简</a>
+    </h4>
+  </div>
+
+  <div class="grid_8 omega" style="float: right;padding-right: 15px;">
+    <ul>
+      <li>related</li>
+      <li><a href="http://justinhileman.info/article/git-pretty/git-pretty.png" target="_blank" onclick="_gaq.push(['_trackEvent', 'git-cheatsheet', 'refer', 'git-pretty', null])">escape a git mess,
+        step-by-step»</a></li>
+      <li><a href="http://www.amp-what.com/?utm_source=Git+Cheatsheet&amp;utm_campaign=Text+Link&amp;utm_medium=web" target="_blank" onclick="  _gaq.push(['_trackEvent', 'git-cheatsheet', 'refer', 'amp-what', null])">discover character
+        entities at &amp;what»</a></li>
+    </ul>
+  </div>
+</div>
+<div class="clear"></div>
+<div id="diagram" class="container_16">
+  <section data-docs="A place to hide modifications while you work on something else" style="width: 128px;" id="stash" class="loc grid_2 alpha"><h5>stash</h5><div class="bar"></div></section>
+  <section data-docs="Local checkout" style="width: 278px;" id="workspace" class="loc grid_4"><h5>workspace</h5><div class="bar"></div></section>
+  <section data-docs="The index (or &quot;staging area) holds a snapshot of the content of the working tree. This snapshot is taken as the contents of the next commit." style="width: 203px;" id="index" class="loc grid_3"><h5>index</h5><div class="bar"></div></section>
+  <section data-docs="A subdirectory named .git that contains all of your necessary repository files — a Git repository skeleton. Typical branches: &lt;b&gt;master&lt;/b&gt;, &lt;b&gt;feature-x&lt;/b&gt;, &lt;b&gt;bugfix-y&lt;/b&gt;" style="width: 278px;" id="local_repo" class="loc grid_4"><h5>local repository</h5><div class="bar"></div></section>
+  <section data-docs="Version(s) of your project that are hosted on the Internet or network, ensuring all your changes are available for other developers. Default is &quot;origin&quot;. Typical branches here: &lt;b&gt;master&lt;/b&gt;, &lt;b&gt;shared-feature-x&lt;/b&gt;, &lt;b&gt;release-y&lt;/b&gt;" style="width: 203px;" id="remote_repo" class="loc grid_3 omega"><h5>upstream repository</h5><div class="bar"></div></section>
+  <dl id="commands"><dt class="workspace index status" style="margin-left: 286.1px; width: 246.25px;">status<div class="arrow"></div></dt><dd>Displays
+ paths that have differences between the index file and the current HEAD
+ commit, paths that have differences between the workspace and the index
+ file, and paths in the workspace that are not tracked by git.</dd><dt class="workspace index status" style="margin-left: 286.1px; width: 246.25px;">diff<div class="arrow"></div></dt><dd>Displays the differences not added to the index.</dd><dt class="workspace local_repo status" style="margin-left: 286.1px; width: 505px;">diff <em>commit or branch</em><div class="arrow"></div></dt><dd>View
+ the changes you have in your workspace relative to the named 
+&lt;em&gt;commit&lt;/em&gt;. You can use HEAD to compare it with the 
+latest commit, or a branch name to compare with the tip of a different 
+branch</dd><dt class="workspace index up" style="margin-left: 286.1px; width: 246.25px;">add <em>file... or dir...</em><div class="arrow"></div></dt><dd>Adds
+ the current content of new or modified files to the index, thus staging
+ that content for inclusion in the next commit. Use &lt;code&gt;add 
+--interactive&lt;/code&gt; to add the modified contents in the workspace
+ interactively to the index.</dd><dt class="workspace index up" style="margin-left: 286.1px; width: 246.25px;">add -u<div class="arrow"></div></dt><dd>Adds
+ the current content of modified (NOT NEW) files to the index.  This is 
+similar to what 'git commit -a' does in preparation for making a commit.</dd><dt class="workspace index up" style="margin-left: 286.1px; width: 246.25px;">rm <em>file(s)...</em><div class="arrow"></div></dt><dd>Remove a file from the workspace and the index.</dd><dt class="workspace index up" style="margin-left: 286.1px; width: 246.25px;">mv <em>file(s)...</em><div class="arrow"></div></dt><dd>Move file in the workspace and the index.</dd><dt class="workspace local_repo up" style="margin-left: 286.1px; width: 505px;">commit -a <span class="optional">-m 'msg'</span><div class="arrow"></div></dt><dd>Commit
+ all files changed since your last commit, except untracked files (ie. 
+all files that are already listed in the index). Remove files in the 
+index that have been removed from the workspace.</dd><dt class="workspace index dn" style="margin-left: 286.1px; width: 246.25px;">checkout <em>files(s)... or dir</em><div class="arrow"></div></dt><dd>Updates the file or directory in the workspace. Does NOT switch branches.</dd><dt class="index status" style="margin-left: 452.35px; width: 200px;">reset HEAD <em>file(s)...</em><div class="arrow"></div></dt><dd>Remove
+ the specified files from the next commit. Resets the index but not the 
+working tree (i.e., the changed files are preserved but not marked for 
+commit) and reports what has not been updated.</dd><dt class="index local_repo dn" style="margin-left: 552.35px; width: 238.75px;">reset --soft HEAD^<div class="arrow"></div></dt><dd>Undo the last commit, leaving changes in the the index.</dd><dt class="workspace local_repo dn" style="margin-left: 286.1px; width: 505px;">reset --hard<div class="arrow"></div></dt><dd>Matches
+ the workspace and index to the local tree. WARNING: Any changes to 
+tracked files in the working tree since commit are lost. Use this if 
+merging has resulted in conflicts and you'd like to start over. Pass 
+ORIG_HEAD to undo the most recent successful merge and any changes 
+after.</dd><dt class="workspace local_repo dn" style="margin-left: 286.1px; width: 505px;">checkout <em>branch</em><div class="arrow"></div></dt><dd>Switches
+ branches by updating the index and workspace to reflect the specified 
+branch, &lt;em&gt;branch&lt;/em&gt;, and updating HEAD to be 
+&lt;em&gt;branch&lt;/em&gt;.</dd><dt class="workspace local_repo dn" style="margin-left: 286.1px; width: 505px;">checkout -b <em>name of new branch</em><div class="arrow"></div></dt><dd>Create a branch and switch to it</dd><dt class="workspace local_repo dn" style="margin-left: 286.1px; width: 505px;">merge <em>commit or branch</em><div class="arrow"></div></dt><dd>Merge
+ changes from &lt;em&gt;branch name&lt;/em&gt; into current 
+branch.&lt;br&gt;Use 
+&lt;code&gt;&amp;#8209;&amp;#8209;no-commit&lt;/code&gt; to leave 
+changes uncommitted.</dd><dt class="workspace local_repo dn" style="margin-left: 286.1px; width: 505px;">rebase <em>upstream</em><div class="arrow"></div></dt><dd>Reverts
+ all commits since the current branch diverged from 
+&lt;em&gt;upstream&lt;/em&gt;, and then re-applies them one-by-one on 
+top of changes from the HEAD of &lt;em&gt;upstream&lt;/em&gt;.</dd><dt class="workspace local_repo dn" style="margin-left: 286.1px; width: 505px;">cherry-pick <em>commit</em><div class="arrow"></div></dt><dd>Integrate changes in the given commit into the current branch.</dd><dt class="workspace local_repo dn" style="margin-left: 286.1px; width: 505px;">revert <em>commit</em><div class="arrow"></div></dt><dd>Reverse
+ commit specified by &lt;em&gt;commit&lt;/em&gt; and commit the result. 
+This requires your working tree to be clean (no modifications from the 
+HEAD commit).</dd><dt class="index local_repo status" style="margin-left: 552.35px; width: 238.75px;">diff --cached <span class="optional"><em>commit</em></span><div class="arrow"></div></dt><dd>View the changes you staged vs the latest commit. Can pass a &lt;em&gt;commit&lt;/em&gt; to see changes relative to it.</dd><dt class="index local_repo up" style="margin-left: 552.35px; width: 238.75px;">commit <span class="optional">-m 'msg'</span><div class="arrow"></div></dt><dd>Stores the current contents of the index in a new commit along with a log message from the user describing the changes.</dd><dt class="index local_repo up" style="margin-left: 552.35px; width: 238.75px;">commit --amend<div class="arrow"></div></dt><dd>Modify the last commit with the current index changes.</dd><dt class="local_repo status" style="margin-left: 711.1px; width: 200px;">log<div class="arrow"></div></dt><dd>Show
+ recent commits, most recent on top. 
+Options:&lt;br&gt;&lt;code&gt;&amp;#8209;&amp;#8209;decorate&lt;/code&gt;
+ with branch and tag names on appropriate 
+commits&lt;br&gt;&lt;code&gt;&amp;#8209;&amp;#8209;stat&lt;/code&gt; 
+with stats (files changed, insertions, and deletions) 
+&lt;br&gt;&lt;code&gt;&amp;#8209;&amp;#8209;author=&lt;em&gt;author&lt;/em&gt;&lt;/code&gt;
+  only by a certain 
+author&lt;br&gt;&lt;code&gt;&amp;#8209;&amp;#8209;after="MMM DD 
+YYYY"&lt;/code&gt; ex. ("Jun 20 2008") only commits after a certain 
+date&lt;br&gt;&lt;code&gt;&amp;#8209;&amp;#8209;before="MMM DD 
+YYYY"&lt;/code&gt; only commits that occur before a certain date 
+&lt;br&gt;&lt;code&gt;&amp;#8209;&amp;#8209;merge&lt;/code&gt; only the 
+commits involved in the current merge conflicts</dd><dt class="local_repo status" style="margin-left: 711.1px; width: 200px;">diff <em>commit</em> <em>commit</em><div class="arrow"></div></dt><dd>View the changes between two arbitrary commits</dd><dt class="local_repo status" style="margin-left: 711.1px; width: 200px;">branch<div class="arrow"></div></dt><dd>List all existing branches. Option -r causes the remote-tracking branches to be listed, and option -a shows both.</dd><dt class="local_repo status" style="margin-left: 711.1px; width: 200px;">branch -d <em>branch</em><div class="arrow"></div></dt><dd>Delete an specified branch. Use -D to force.</dd><dt class="local_repo remote_repo dn" style="margin-left: 811.1px; width: 246.25px;">branch --track <em>new</em> <em>remote/branch</em><div class="arrow"></div></dt><dd>Create a new local branch that tracks a remote branch.</dd><dt class="workspace remote_repo dn" style="margin-left: 286.1px; width: 771.25px;">clone <em>repo</em><div class="arrow"></div></dt><dd>Download the repository specified by &lt;em&gt;repo&lt;/em&gt; and checkout HEAD of the master branch.</dd><dt class="workspace remote_repo dn" style="margin-left: 286.1px; width: 771.25px;">pull <em>remote</em> <em>refspec</em><div class="arrow"></div></dt><dd>Incorporates
+ changes from a remote repository into the current branch. In its 
+default mode, &lt;code&gt;git pull&lt;/code&gt; is shorthand for 
+&lt;code&gt;git fetch&lt;/code&gt; followed by &lt;code&gt;git merge 
+FETCH_HEAD&lt;/code&gt;.</dd><dt class="workspace remote_repo dn" style="margin-left: 286.1px; width: 771.25px;">reset --hard <em>remote</em>/<em>branch</em><div class="arrow"></div></dt><dd>Reset
+ local repo and working tree to match a remote branch. Use 
+&lt;code&gt;reset &amp;#8209;&amp;#8209;hard origin/master&lt;/code&gt; 
+to throw away all commits to the local master branch. Use this to start 
+over on a failed merge.</dd><dt class="local_repo remote_repo dn" style="margin-left: 811.1px; width: 246.25px;">fetch <em>remote</em> <em>refspec</em><div class="arrow"></div></dt><dd>Download objects and refs from another repository.</dd><dt class="local_repo remote_repo up" style="margin-left: 811.1px; width: 246.25px;">push<div class="arrow"></div></dt><dd>update
+ the server with your commits across all branches that are *COMMON* 
+between your local copy and the server.Local branches that were never 
+pushed to the server in the first place are not shared</dd><dt class="local_repo remote_repo up" style="margin-left: 811.1px; width: 246.25px;">push <em>remote</em> <em>branch</em><div class="arrow"></div></dt><dd>Push new (or existing) branch to remote repository</dd><dt class="local_repo remote_repo up" style="margin-left: 811.1px; width: 246.25px;">push <em>remote</em> <em>branch</em>:<em>branch</em><div class="arrow"></div></dt><dd>Push new branch to remote repository with a different name</dd><dt class="remote_repo status" style="margin-left: 977.35px; width: 200px;">branch -r<div class="arrow"></div></dt><dd>List remote branches</dd><dt class="remote_repo status" style="margin-left: 977.35px; width: 200px;">push <em>remote</em> :<em>branch</em><div class="arrow"></div></dt><dd>Remove a remote branch. Literally &amp;quot;push nothing to this branch&amp;quot; </dd><dt class="workspace dn" style="margin-left: 186.1px; width: 200px;">clean<div class="arrow"></div></dt><dd>Cleans the working tree by recursively removing files that are not under version control, starting from the current directory.</dd><dt class="stash workspace dn" style="margin-left: 68.6px; width: 197.5px;">stash save <span class="optional"><em>msg</em></span><div class="arrow"></div></dt><dd>Save
+ your local modifications to a new stash, and run git reset 
+&amp;#8209;&amp;#8209;hard to revert them. The &lt;em&gt;msg&lt;/em&gt; 
+part is optional and gives the description along with the stashed state.
+ For quickly making a snapshot, you can omit both "save" and 
+&lt;em&gt;msg&lt;/em&gt;.</dd><dt class="stash workspace up" style="margin-left: 68.6px; width: 197.5px;">stash apply <span class="optional"><em>stash</em></span><div class="arrow"></div></dt><dd>Move changes from the specified stash into the workspace. The latest stash is the default.</dd><dt class="stash workspace up" style="margin-left: 68.6px; width: 197.5px;">stash pop<div class="arrow"></div></dt><dd>Applies the changes from the last (or specified) stash and then removes the given stash.</dd><dt class="stash status" style="margin-left: -31.4px; width: 200px;">stash list<div class="arrow"></div></dt><dd>List the stashes that you currently have.</dd><dt class="stash status" style="margin-left: -31.4px; width: 200px;">stash show <span class="optional"><em>stash</em></span><div class="arrow"></div></dt><dd>Show
+ the changes recorded in the stash as a diff between the stashed state 
+and its original parent. When no &lt;em&gt;stash&lt;/em&gt; is given, 
+shows the latest one.</dd><dt class="stash status" style="margin-left: -31.4px; width: 200px;">stash drop <span class="optional"><em>stash</em></span><div class="arrow"></div></dt><dd>Remove a single stashed state from the stash list. When no &lt;em&gt;stash&lt;/em&gt; is given, it removes the latest one.</dd><dt class="stash status" style="margin-left: -31.4px; width: 200px;">stash clear<div class="arrow"></div></dt><dd>Remove all the stashed states. Note that those states will then be subject to pruning, and may be impossible to recover.</dd><dt class="stash local_repo up" style="margin-left: 68.6px; width: 722.5px;">stash branch <em>branchname</em> <span class="optional"><em>stash</em></span><div class="arrow"></div></dt><dd>Creates
+ and checks out a new branch named &lt;em&gt;branchname&lt;/em&gt; 
+starting from the commit at which the &lt;em&gt;stash&lt;/em&gt; was 
+originally created, applies the changes recorded in 
+&lt;em&gt;stash&lt;/em&gt; to the new working tree and index. 
+&lt;br&gt;If that succeeds, and &lt;em&gt;stash&lt;/em&gt; is a 
+reference of the form stash@{&lt;em&gt;revision&lt;/em&gt;}, it then 
+drops the &lt;em&gt;stash&lt;/em&gt;. When no &lt;em&gt;stash&lt;/em&gt;
+ is given, applies the latest one. &lt;br&gt;This is useful if the 
+branch on which you ran git stash save has changed enough that git stash
+ apply fails due to conflicts. Since the stash is applied on top of the 
+commit that was HEAD at the time git stash was run, it restores the 
+originally stashed state with no conflicts.</dd></dl>
+  <div style="" id="info">
+    <div class="screen"></div>
+    <div class="cmd"><span>stash</span></div>
+    <div class="doc">A place to hide modifications while you work on something else</div>
+  </div>
+  <div>
+    <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 120px; height: 15px;"><iframe title="+1" data-gapiattached="true" src="static/fastbutton.html" name="I0_1393985077839" id="I0_1393985077839" vspace="0" tabindex="0" style="position: static; top: 0px; width: 120px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" marginwidth="0" marginheight="0" hspace="0" frameborder="0" scrolling="no" width="100%"></iframe></div>
+  </div>
+</div>
+<script type="text/javascript">
+  (function () {
+    var po = document.createElement('script');
+    po.type = 'text/javascript';
+    po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+
+<iframe tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;" src="static/postmessageRelay.html" id="oauth2relay884706481" name="oauth2relay884706481"></iframe></body><iframe src="" style="display: none;"></iframe></html>
