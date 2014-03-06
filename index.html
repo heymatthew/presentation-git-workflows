@@ -75,16 +75,6 @@
 					</aside>
 				</section>
 
-				<!-- Entertaining gifs -->
-				<section>
-					<section data-background-image="images/3-steps.gif">
-						<h3>How I hope you feel when you walk out of this room<h3>
-					</section>
-					<section data-background-image="images/git-to-svn-users.gif">
-						<h3>How an svn user sees git workflow</h3>
-					</section>
-				</section>
-
 				<!-- Course Overview -->
 				<section data-markdown>
 					<script type="text/template">
@@ -435,6 +425,20 @@
 									* Blame <-- you are here
 									* Pickaxe
 							----------------------------------------
+							Basic usage
+							```
+							git blame $filename
+							git show $hash
+							```
+							Ignore whitespace
+							```
+							git blame -w $filename
+							```
+							Copy paste detection in a file, and across the repo
+							```
+							git blame -M $filename
+							git blame -C $filename
+							```
 						</script>
 					</section>
 					<section> <!-- Git pickaxe -->
@@ -448,7 +452,63 @@
 										* Blame
 										* Pickaxe <-- you are here
 								----------------------------------------
+								```
+								git log -S 'some distinct line that changed'
+								git log --stat -S '$racebook_uri_result'
+								```
+								* Find all the changes to a line in your entire history
+								* The pickaxe can help find code that’s been deleted or moved
+								* Typically helps you with questions like
+								 - What happened to myFabuliousFunc(), it's gone!
+								 - When did $mySillyVariable get referenced everywhere?
+
+								* Works with log, diff, and format-patch
 							</script>
+						</div>
+					</section>
+					<section>
+						<div data-markdown>
+							### Activity: Testing bisect
+							1. Clone the jabberwocky repo
+							3. Checkout the changes made with git log
+							2. Use bisect to find the commit that broke the page
+
+							```
+							git clone https://github.com/saltcrab/jabberwocky
+							git log -p
+							git log --stat
+							git bisect start $bad $good
+							```
+							Exhibits wanted behaviour?
+							```
+							git bisect good
+							```
+							Exhibits unwanted behaviour?
+							```
+							git bisect bad
+							```
+							Tidy up with
+							```
+							git bisect reset
+							```
+						</div>
+					</section>
+					<section>
+						<div data-markdown>
+							### Activity: Testing log, pickaxe, blame and show
+							1. Clone jquery repo
+							2. Use git log to find fixes to issue #14756
+							3. Use pickaxe to find commits that added or removed 'parseFloat'
+							4. Try git blame on the .gitignore file
+							5. With this info, show the commit that blacklisted bower_components
+
+							```
+							git clone https://github.com/jquery/jquery
+							git log --grep 'asdf'
+							git log -S 'asdf'
+							git blame $file
+							git show $hash
+							```
 						</div>
 					</section>
 					<section>
@@ -465,22 +525,136 @@
 							height="500px"
 						>
 					</section>
-					<section data-markdown>
-						<script type="text/template">
-							### Mastering branches
-							TODO Define nodes on those graph 
-							* Nodes represent diffs WRT each other
+					<section>
+						<h3>Mastering branches: Overview</h3>
+						<hr>
+						<div data-markdown class="fragment current-visible" style="position:absolute">
+							Git thinks in Snapshots, Not Differences
+
+							> The major difference between Git and any other VCS (Subversion and friends included)
+							> is the way Git thinks about its data.
+
+							src: git-scm.com, ch 1.3 Getting Started: Git Basics
+						</div>
+						<div class="fragment current-visible" style="position:absolute">
+							<p>SVN commits</p>
+							<div>
+								<img src="images/branches-svn.png">
+							</div>
+							<p>Git commits</p>
+							<div>
+								<img src="images/branches-commits.png">
+							</div>
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute">
+							![](images/branches-typical.png)
+							![](images/branches-multi.png)
+
+							Typical branching, images from http://git-scm.com
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute">
+							![](images/branches-perspective.png)
+
+							How branches can be used for workflow
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute">
+							* Nodes represent diffs with respect to each other
 							* Nodes represent entire filesystem layout on their own
 							* Nodes are immutable
-							TODO insert png here with history fu
-							TODO define a branch
-							TODO define a tag
-							TODO define a commit
-							TODO link these 3
-							TODO What you can use a branch for
-							TODO Rewrite history with interactive rebase
-							TODO merge histories
-						</script>
+
+							----------------------------------------
+							You can describe nodes with a...
+
+							* **branch**	- a name to track your work
+							* **tag**			- a label, it doesn't move
+							* **commit**	- complete history and set of files
+							* **HEAD**    - your current checkout
+							* **$ref^**   - above are $refs, chain ^ or ~ to go up a branch
+
+							----------------------------------------
+
+							Lets look at how we can use these with commands
+						</div>
+					</section>
+					<section>
+						<h3>Mastering branches: Commands</h3>
+						<div data-markdown>
+							Interesting commands with branches
+							```
+							git checkout $branch
+							git reset $ref
+							git rebase $branch
+							git rebase --interactive $branch
+							```
+							----------------------------------------
+							* **Checkout**: context dependent command...
+								1. Either reset unstaged file(s)
+								2. Or switch branches
+							* **Rebase**: Batch move commits and rewrite history
+							* **Reset**: Move branches around arbitarily
+							* **Reflog**: Save my ass! What have I had 'checked out' recently?
+							----------------------------------------
+							Whiteboard time!
+						</div>
+					</section>
+					<section>
+						<h3>Mastering branches: Headless state</h3>
+						<div data-markdown>
+							If you're not on a branch, git puts you in a headless state
+							```
+							git checkout $tag
+							git checkout $commit
+							```
+						</div>
+						<div data-markdown>
+							Trying something like this...
+							```
+							git checkout HEAD^
+							```
+							Results in something like this...
+						</div>
+						<div data-markdown>
+							```
+							You are in 'detached HEAD' state. You can look around, make experimental
+							changes and commit them, and you can discard any commits you make in this
+							state without impacting any branches by performing another checkout.
+
+							If you want to create a new branch to retain commits you create, you may
+							do so (now or later) by using -b with the checkout command again. Example:
+
+							git checkout -b new_branch_name
+
+							HEAD is now at f4b37d8... CSS: Return values should be numbers
+							```
+							Which is git being melodramatic
+						</div>
+					</section>
+					<section>
+						<div data-markdown>
+							### Activity: Mastering Branches
+							1. Navigate to your Jabberwocky repo clone
+							2. Checkout 'master'
+							3. Fix the bug, commit
+							4. Interactive rebase onto the tag v1
+							5. Squash your fix with 'Oops' and give it a message.
+
+							```
+							cd $jabberwocky_dir
+							vim jabberwocky.html
+							git add jabberwocky.html
+							git commit
+							git log
+							git rebase $ref --interactive
+							git log -p
+							```
+
+							...it's as if the error was never there.
+
+							Now put it back
+							```
+							git reset origin/master --hard
+							```
+						</div>
 					</section>
 					<section>
 						<h3>Tools suited to personal workflow</h3>
@@ -496,11 +670,29 @@
 							height="500px"
 						>
 					</section>
-					<section data-markdown>
-						<script type="text/template">
+					<section>
+						<div data-markdown>
 							### Audit work interactively
 							Audit your work interactively with your staging area
-						</script>
+
+							1. When you're ready to commit locally
+							2. When you want to break up a monstor commit
+
+							----------------------------------------
+							### Quick activity
+							Add your own verse to the jabberwocky poem, then run
+							```
+							git add -p
+							```
+							Check what's happened with
+							```
+							git status
+							```
+							Put stuff back with
+							```
+							git reset HEAD
+							```
+						</div>
 					</section>
 					<section>
 						<h3>Tools suited to personal workflow</h3>
@@ -516,10 +708,34 @@
 							height="500px"
 						>
 					</section>
-					<section data-markdown>
-						<script type="text/template">
+					<section>
+						<div data-markdown>
 							### Manage merge conflicts like a pro
-						</script>
+							Source control is about social coding and interactions.
+
+							A conflict should be a conversation. When you see
+							```
+							CONFLICT (content): Merge conflict in jabberwocky.html
+							Automatic merge failed; fix conflicts and then commit the result.
+							```
+							Get info with
+							```
+							git status
+							git blame $file
+							```
+							Markers are usually HEAD and a $ref, wher
+
+							1. HEAD is work of yours
+							2. $ref is the thing you're in conflict with
+
+							```
+							git reflog
+							git merge $ref
+							```
+						</div>
+					</section>
+					<section data-background-image="images/3-steps.gif">
+						<h3>How I hope you feel when you walk out of this room<h3>
 					</section>
 				</section>
 
@@ -538,10 +754,34 @@
 							- Clean history, rebase verses merge
 						</script>
 					</section>
-					<section data-markdown>
-						<script type="text/template">
+					<section>
+						<div data-markdown>
 							### Quickly setup local, network accessible repos
-						</script>
+							![](images/dictator-lieutenant-contributors.png)
+						</div>
+					</section>
+					<section>
+						<div data-markdown>
+							### Quickly setup local, network accessible repos
+							```
+							git remote add $location
+							git remote rm $location
+							```
+							Location can be...
+
+							1. Filesystem (/path/to/repo, ~/workspace/repo)
+							1. HTTP(s) (http://host/repo)
+							1. SSH (host:repo, host:/path/to/repo)
+							1. GIT (git:host)
+
+							----------------------------------------
+							Or on a mailing list...
+							```
+							git format-patch ($ref | $since..$till)
+							git send-email ($ref | $since..$till)
+							git am ARGS
+							```
+						</div>
 					</section>
 					<section data-markdown>
 						<script type="text/template">
@@ -558,6 +798,9 @@
 							### Clean history, rebase verses merge
 						</script>
 					</section>
+					<section data-background-image="images/git-to-svn-users.gif">
+						<h3>How an svn user sees git workflow</h3>
+					</section>
 				</section>
 
 				<section>
@@ -572,6 +815,9 @@
 							- Strategies for dealing with client requirements
 							- Strategies for database patching on branches
 						</script>
+					</section>
+					<section data-background-image="images/personal-workflows.gif">
+						<h3>Release all the things!</h3>
 					</section>
 				</section>
 
