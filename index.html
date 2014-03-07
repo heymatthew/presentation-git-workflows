@@ -443,38 +443,37 @@
 					</section>
 					<section> <!-- Git pickaxe -->
 						<div data-markdown>
-							<script type="text/template">
-								### Context hunting / Isolate, Triage
-								- Personal workflows...
-									- Isolate and Triage: Context hunting
-										* Log
-										* Bisect
-										* Blame
-										* Pickaxe <-- you are here
-								----------------------------------------
-								```
-								git log -S 'some distinct line that changed'
-								git log --stat -S '$racebook_uri_result'
-								```
-								* Find all the changes to a line in your entire history
-								* The pickaxe can help find code that’s been deleted or moved
-								* Typically helps you with questions like
-								 - What happened to myFabuliousFunc(), it's gone!
-								 - When did $mySillyVariable get referenced everywhere?
+							### Context hunting / Isolate, Triage
+							- Personal workflows...
+								- Isolate and Triage: Context hunting
+									* Log
+									* Bisect
+									* Blame
+									* Pickaxe <-- you are here
+							----------------------------------------
+							```
+							git log -S 'some distinct line that changed'
+							git log --stat -S '$racebook_uri_result'
+							```
+							* Find all the changes to a line in your entire history
+							* The pickaxe can help find code that’s been deleted or moved
+							* Typically helps you with questions like
+							 - What happened to myFabuliousFunc(), it's gone!
+							 - When did $mySillyVariable get referenced everywhere?
 
-								* Works with log, diff, and format-patch
-							</script>
+							* Works with log, diff, and format-patch
 						</div>
 					</section>
 					<section>
 						<div data-markdown>
 							### Activity: Testing bisect
-							1. Clone the jabberwocky repo
-							3. Checkout the changes made with git log
-							2. Use bisect to find the commit that broke the page
-
+							1. Clone the jabberwocky repo, pull tags
+							2. Checkout the changes made with git log
+							3. Use bisect with v1 and v2 tags as good/bad commits
+							4. find the commit that broke the page
 							```
 							git clone https://github.com/saltcrab/jabberwocky
+							git fetch --tags
 							git log -p
 							git log --stat
 							git bisect start $bad $good
@@ -487,6 +486,10 @@
 							```
 							git bisect bad
 							```
+						</div>
+					</section>
+					<section>
+						<div data-markdown>
 							Tidy up with
 							```
 							git bisect reset
@@ -565,11 +568,11 @@
 							----------------------------------------
 							You can describe nodes with a...
 
-							* **branch**	- a name to track your work
-							* **tag**			- a label, it doesn't move
-							* **commit**	- complete history and set of files
-							* **HEAD**    - your current checkout
-							* **$ref^**   - above are $refs, chain ^ or ~ to go up a branch
+							* **branch**			- a name to track your work
+							* **tag**					- a label, it doesn't move
+							* **commit hash**	- complete history and set of files
+							* **HEAD**				- your current checkout
+							* **$ref^**   		- above are $refs, chain ^ or ~ to go up a branch
 
 							----------------------------------------
 
