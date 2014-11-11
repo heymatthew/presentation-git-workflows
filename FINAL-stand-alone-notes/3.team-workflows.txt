@@ -1,0 +1,101 @@
+Adavnced Git
+Workflows for Developers
+
+git - the stupid content tracker
+(git man pages)
+
+* Getting Started
+* Personal workflows
+* Team workflows
+ - Quickly setup local, network accessible repos
+ - Working with people who don't enjoy source control
+ - Manage conflicts like a pro
+ - Clean history, rebase verses merge
+* Client workflows (managing release cycles)
+* Tools that integrate with git
+
+
+Team workflows: Quickly setup local, network accessible repos
+================================================================================
+* git clone $some_url
+* git remote add $some_alias $some_uri
+* git remote rm $some_alias $some_uri
+
+If you own ssh certs on both machines, you can push and pull between your own repos
+* git clone spud:workspace/advanced-git
+ - Now origin points at my repo on spud
+ - You can push or pull
+* git remote add upstream spud:workspace/advanced-git
+ - Now you have a remote called upstream
+ - Push your branch with
+    git push upstream feature-branch
+ - This is distinguishable from
+    git push origin feature-branch
+
+Another way, setup git-daemon with your neighbour!
+This is PULL ONLY, so you could both set this up
+
+In your repo
+    touch .git/git-daemon-export-ok
+    git daemon
+
+Get your neighbours IP address, and run
+    git remote add collegue git://$their_ip/$full_path
+    git fetch collegue
+    git rebase collegue/master --interactive
+
+    e.g.
+        git remote add daemon git://localhost/home/mbgray/advanced-git
+        ^^ Note, it's just a folder
+
+Further reading
+    http://www.jedi.be/blog/2009/05/06/8-ways-to-share-your-git-repository/
+    https://www.kernel.org/pub/software/scm/git/docs/user-manual.html#setting-up-a-public-repository
+
+
+Team workflows: Working with people who don't enjoy source control
+================================================================================
+Most people are at least trained to save often!
+
+Make it easier on yourself
+* Isolate their work on a feature branch
+* Merge their feature branch back in at regular intervals
+ - Over coffee?
+ - Before email?
+* Autocommit their work if they're not comfortable with that
+
+    while true; do
+        clear;
+        git add .
+        git commit -m "$designer updated UX."
+        sleep 1;
+    done;
+
+    screen ./autocommit-script.sh
+
+* On a merge conflict, you need to
+ 1. Get the designer
+ 2. Get the second developer who made the other change
+ 3. Make a resolution which they're both happy with
+
+Each time there's a conflict, there needs to be a conversation!
+Your collegues will know the most about the context of that code
+
+
+Team workflows: Clean history, rebase verses merge
+================================================================================
+* Rebase and Merge are two strategies to get other changes into your history
+
+* A merge creates a single commit
+ - git fetch
+ - git merge origin/master
+    ==> git pull
+
+* A rebase cherry-picks changes in your history
+ - git fetch
+ - git rebase origin/master
+    ==> git pull --rebase
+
+* You can back out of conflicts with --abort
+ - git merge --abort
+ - git rebase --abort

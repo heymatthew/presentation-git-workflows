@@ -1,0 +1,335 @@
+Adavnced Git
+Workflows for Developers
+
+
+Overview
+================================================================================
+* Getting Started
+* Personal workflows
+ - Unlocking achievements, making git a bit more fun
+ - Context hunting with Bisect, Blame, Log and Pickaxe
+ - Mastering branches with rebase and reset
+ - Audit your work interactively with your staging area
+ - Manage merge conflicts like a pro
+ - Rewrite history with interactive rebase
+* Team workflows
+* Client workflows (managing release cycles)
+
+Basic structre of a personal workflow
+* Isolate
+* Work <--> Update, test
+* Share
+    ...better developers will share often
+    ...but you should never push broken stuff
+
+
+Personal workflows: Unlocking achievements, making git a bit more fun
+================================================================================
+It's hard to be motiviated without shiny shiny
+
+Go unlock some achievements!!
+Got a Github account?
+Yes!
+    1. Fork this repo!
+        https://github.com/icefox/git-achievements
+    2. Clone your fork!
+        git clone git@github.com:mbgray/git-achievements.git
+    3. Upload your achievements
+        git config --global achievement.upload "true"
+    4. Profit! Er, leaderboards?
+
+:'( ... not (yet)
+    1. Clone this repo!
+        git clone https://github.com/icefox/git-achievements.git
+    2. Push it someplace later!
+        git remote add origin YOUR_URL_TO_FLAUNT
+        git push origin master
+
+
+Some of the cool things to unlock
+1. An HTML page with a nice layout
+    http://spud.wgtn.cat-it.co.nz/git-achievements/index.html
+2. RSS feed of your achievements
+    https://raw.github.com/mbgray/git-achievements/gh-pages/index.rss
+    ...Leaderboards would be nice ;-), start here.
+3. Lots of achievements to unlock!
+    You'll unlock a heap from this course, here are some of mine!
+********************************************************************************
+Git Achievement Unlocked!
+
+Apprentice Gipsy (Level 3)
+Create, list, delete a tag signed with GPG using git tag
+
+Socialite (Level 5)
+pushed a branch to a remote repository using git push
+
+Historian (Level 6)
+Investigate the commit log using git log.
+
+Apprentice Seamstress (Level 3)
+amended a commit with git commit --amend.
+
+Apprentice Thug (Level 2)
+Forced pushed a branch with git push -f
+
+Caretaker
+Added a .gitignore file to a repository.
+
+Master Stone Mason (Level 7)
+Added files to the index area for inclusion in the next commit with git add
+
+Collector (Level 6)
+Fetches named heads or tags from another repository with git fetch
+
+Dentist
+Extracted patches using git log -p.
+
+Product Manager (Level 3)
+Stash the changes in a dirty working directory away with git stash
+
+Investigator (Level 4)
+Used git blame to annotate a file with information about how each line changed.
+
+********************************************************************************
+
+A couple of downsides
+1. To keep your achievements after the course, be sure to mail yourself
+    ~/.git-achievements.log
+2. It'll be hard to see this software evolve as it's keeping it's code comingled
+   with YOUR achievements. Github's graph feature is useless in the context of
+   this project.
+3. We have no way of knowing if the author is a bad parent for this project.
+   There are lots of pull requests outstanding.
+    ... I suggest renaming the project, e.g. git-achievements-v2
+    ... Drop the 'fork me' nature
+    ... Make it pluggable! Everyone wants their feature :)
+
+
+Personal workflows: Context hunting with Bisect, Blame, Log and Pickaxe
+================================================================================
+This is a BEFORE YOU START thing, helps with ISOLATE step
+
+Context is important when you start to
+1. Avoid regressing your codebase
+2. Find out if code is still under warranty
+3. Get help if you get stuck, seek out a human
+
+This section covers
+* Discovering commit context with git blame
+* Finding bugs quickly with git bisect
+* Looking at history or searching in history with Log
+* Get out the pickaxe: Finding changes was never easier
+
+Before we start, run
+    git clone https://github.com/jquery/jquery.git
+
+
+Finding bugs quickly with git bisect
+--------------------------------------------------------------------------------
+Basically
+    git bisect start $bad_commit $good_commit
+    git bisect bad
+    git bisect good
+
+Tidy up with
+    git bisect reset
+
+Sometimes it's guess work
+    git bisect skip
+
+Sometimes it's complicated to get back to your guess spot
+    git bisect log > bisect.log
+    git bisect replay bisect.log
+
+
+Looking at history or searching in history with Log
+--------------------------------------------------------------------------------
+* Show me contents of patches
+    git log -p
+* Show me a summary of patches
+    git log --stat
+* Find changes associated with text in a commit message:
+    git log --grep '$search_term'
+    git log --grep 'bug#1234'
+
+Note, these examples use $stable and $feature as placeholders
+These placeholders could be
+ - A tag (release-1.0)
+ - A ref (hashy thing)
+ - A branch (master)
+ - A remote branch (origin/master)
+
+* Find what changes are on $feature that are not in $stable
+    git log <since> <until>
+    git log $stable $feature
+    => what bout stuff on $stable that isn't in $feature?
+        git log $feature $stable
+
+A diff trick, flat history similar to log...
+    How big are the differences between $stable and $feature?
+        git diff --stat $feature $stable
+
+USE images/diff-size-branch.png
+
+Get out the pickaxe: Finding changes was never easier
+--------------------------------------------------------------------------------
+* Hard to find man (man pickaxe is fail)
+* Find all the changes to a line in your entire history
+ - Things with plusses and minuses in front of em in your diffs ;-)
+* The pickaxe can help find code that’s been deleted or moved
+ - git blame won’t tell you about those lines at all
+* Typically helps you with questions like
+ - What happened to myFabuliousFunc(), I used to use it, it's gone
+ - When did $mySillyVariable get referenced everywhere? (perhaps we need to generalise)
+* Works with log, diff, and format-patch
+ - git log -S 'some distinct line I'm looking for'
+
+e.g. git log --stat -S '$racebook_uri_result'
+ - Note, I mixed in --stat to see the size of the change
+
+
+* Discovering commit context with git blame
+--------------------------------------------------------------------------------
+Basic
+- git blame $filename
+- git show $hash
+
+Ignore whitespace changes
+- git blame -w $filename
+
+Some more funk
+Detect copypaste in the same file
+- git blame -M $filename
+
+Detect copypaste across the entire repo
+- git blame -C $filename
+
+NOTE, git detects renames, and suppresses the filename unless it's significant
+git blame -W dshr/comp/event.comp
+    USE images/git-blame-copy-detection.png to show copy detection in action
+git blame -C dshr/comp/event.comp
+    USE images/git-blame-copy-detection.png to explain refactor detection
+
+Conclusion we can draw from comparing copypaste and ordinary blames
+    These lines of code where leftover functionality from an old system designed in 2008.
+    An attempt was made to port the functionality during a refactor in 2011.
+
+    You can blame [collegue] for the current context after the refactor
+    You miiiiiight be able to ask [other collegue] about the original refactor
+    This function is quite likely out of warranty
+
+
+* Practice Context hunting with Bisect, Blame, Log and Pickaxe
+--------------------------------------------------------------------------------
+* Clone jquery (hope you've done this already)
+    git clone https://github.com/jquery/jquery
+1. Find code tracked by git that contains keyword 'removal-fixture'
+    git grep 'removal-fixture'
+2. Why is sizzle (src/selecdtor-sizzle.js) not checked into src control?
+    git blame .gitignore
+    git show $some_ref
+3. What commits relate to ticket 13779 (http://bugs.jquery.com/ticket/13779)
+    git log --grep '13779'
+    git log -p --grep '13779'
+    git log --stat --grep '13779'
+4. When did my function post-uglify get removed and why?
+    git log -S post-uglify
+
+* Grab the jabberwocky poem
+    git clone https://github.com/mbgray/advanced-git-jabberwocky.git
+    NOTE TO SELF, PUSH TAGS!!!
+4. When did my alert bug appear?
+    tag 0.2 was bad (checkout 0.2)
+    tag 0.1 was ok (checkout 0.1)
+        What change introduced that bug?
+
+    git bisect start 0.2 0.1
+    git bisect bad
+    git bisect good
+
+Sometimes it's guess work
+    git bisect skip
+
+
+Personal workflows: Audit your work interactively with your staging area
+================================================================================
+These techniques are to sharpen your changes, and catch errors.
+
+This section covers the staging area.
+When you stage, you're reviewing before bunging stuff into a commit.
+
+Try to avoid MONSTOR COMMITS
+In code, split refactor work and feature work into different commits
+This is good for
+1. Reviewing (sooner or later)
+2. Managing your changes
+3. Good programmers share more often to avoid conflicts for everyone
+
+Now try:
+1. Take the jabberwocky example
+2. Add a paragraph to the end
+3. Add a paragraph to the middle
+3. Commit your changes with
+    git add -p
+
+As you're presented with each hunk, you can add things interactively
+Here are really common options
+ y: yes, I want to add this hunk
+ n: no, don't add this hunk
+ e: edit, I want to pick parts of this hunk to commit
+
+Lets try all of them
+ git reset HEAD^
+   will move your branch
+    not your workspace
+
+
+Personal workflows: Manage merge conflicts like a pro
+================================================================================
+Merge conflict markers show what branch has the issue
+Merges talk about HEAD, where HEAD is the branch you are curently on
+Merge conflicts keep blame information in-tact so you can find a human to talk to
+
+USE images/merge-conflict-*
+
+When the file is ready, and you've removed conflict markers etc.
+1. Use git add on the file
+2. Use git commit to complete the merge
+
+Back out of a merge with --abort
+    git merge draft-1
+        Auto-merging novel.txt
+        CONFLICT (content): Merge conflict in novel.txt
+        Automatic merge failed; fix conflicts and then commit the result.
+    git merge --abort
+
+
+If you're rebasing, it's a similar story, EXCEPT there is more work to do
+1. Resolve the conflict
+2. Add the files
+3. Use git rebase --continue to resume the rebase
+
+Back out of a rebase with git rebase --abort
+
+If you do the same rebase over and over and over, git can record and reapply
+those changes if you activate git rerere
+
+git config rerere.enabled true
+    I'm not giving an example where I use a global here because I don't want it
+    in every project
+
+
+Personal workflows: Mastering branches with rebase and reset
+================================================================================
+These techniques are for cleaning up your changes before you share them.
+
+Useful for re-committing changes
+* Reset your branch and re-stage hunks
+* Rebase a feature branch atop upstream
+ - Leave a breadcrumb trail with commit messages as metadata
+* Forcing a remote into a state with git push -f
+* Rewrite history with git rebase --interactive
+ - Good for tidying up just before committing
+ - Good for unpicking work that you don't want to share
+ - For merging a fix early to simplify your history
+ - For reordering your fixes

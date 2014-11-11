@@ -1,0 +1,9 @@
+THIS SLIDE SET WAS REMOVED
+
+However, the following tools would be great for advanced course
+tig
+gitk
+gitg
+gerrit
+    - git review
+    - web ui

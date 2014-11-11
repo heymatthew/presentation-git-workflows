@@ -1,0 +1,44 @@
+Adavnced Git
+Workflows for Developers
+
+git - the stupid content tracker
+(git man pages)
+
+* Getting Started
+* Personal workflows
+* Team workflows
+* Client workflows (managing release cycles)
+ - Strategies for dealing with client requirements
+ - Strategies for database patching on branches
+
+Basic branching
+--------------------------------------------------------------------------------
+Work on master till you're ready
+Tag and branch at the point you want to release
+Work on the release branch if there's a problem with the release
+Merge back into master when it's done
+
+USE images/basic-branching*
+
+Release branches
+--------------------------------------------------------------------------------
+Define what you want on each release
+Branch off the previous release
+Last person to work on a branch should merge forward
+
+USE images/release-branches.png
+
+Feature releases
+--------------------------------------------------------------------------------
+Break down your work into chunks of changes
+Each changeset is deemed a 'feature'
+Create release candidates based on disposable branches
+When you release, merge production into upcoming feature branches
+
+USE images/feature-release*
+
+Microkernel
+--------------------------------------------------------------------------------
+
+Distributed workflow with volatile upstream
+--------------------------------------------------------------------------------

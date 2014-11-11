@@ -1,0 +1,24 @@
+Adavnced Git
+Workflows for Developers
+
+Futher reading
+================================================================================
+* Pro Git: Scott Chacon (Apress 2009), ISBN-10: 1430218339
+ - Creative commons share alike v.3.0
+ - PDF, ePub, mobi
+ - up on http://git-scm.com/book
+* Schwern's talk: Git for ages 4 and up
+ - http://www.youtube.com/watch?v=1ffBJ4sVUb4
+* Guide to locally accessable git repos on kernel.org
+ - https://www.kernel.org/pub/software/scm/git/docs/user-manual.html#setting-up-a-public-repository
+* Good blog article: 8 ways to share your repo
+ - http://www.jedi.be/blog/2009/05/06/8-ways-to-share-your-git-repository/
+* man git-workflows for what the git guys recommend (warning: heavy reading)
+
+
+Reminder
+* To keep your achievements after the course, be sure to mail yourself
+    ~/.git-achievements.log
+* Keep your settings by mailing yourself
+    ~/.gitconfig
+* We'll email you a WR to account for your time :)

@@ -1,0 +1,95 @@
+Adavnced Git
+Workflows for Developers
+
+
+Special thanks
+================================================================================
+Mike O' – For approving this course
+Alison Aldred – For being generally awesome
+Evan Giles – Inspiration and advice
+
+git - the stupid content tracker
+(git man pages)
+
+
+Course Overview
+================================================================================
+Getting Started
+Personal workflows
+Team workflows
+Client workflows / Managing release cycles
+
+* Getting Started
+ - Basic config for these machines
+ - Good config defaults
+ - Quick review of basic git
+
+* Personal workflows
+ - Unlocking achievements, making git a bit more fun
+ - Context hunting with Bisect, Blame, Log and Pickaxe
+ - Mastering branches with reset
+ - Audit your work interactively with your staging area
+ - Manage merge conflicts like a pro
+ - Rewrite history with interactive rebase
+
+* Team workflows
+ - Quickly setup local, network accessible repos
+ - Working with people who don't enjoy source control
+ - Manage conflicts like a pro
+ - Clean history, rebase verses merge
+
+* Client workflows (managing release cycles)
+ - Strategies for dealing with client requirements
+ - Strategies for database patching on branches
+
+
+Getting Started: Basic Setup
+================================================================================
+Before you start, you need these config options to stop the test machines
+complaining:
+
+1. Your username
+    git config --global user.name “Dr. Henry Killinger”
+2. Your email
+    git config --global user.email “killenger@statesecretary.govt.us”
+3. Your favourite editor (e.g. gvim, emacs)
+    git config --global core.editor vim
+
+These are stored in ~/.gitconfig
+
+
+Getting Started: Good config defaults
+================================================================================
+USE images/config-color-ui.png
+
+* Use colour to highlight branches and diffs
+    git config --global color.ui always
+* Make sure you only push the branch you're on
+    git config --global push.default current
+* Show branches and tags in git log
+    git config --global log.decorate full
+* Setup rebase as the default strategy for git pull
+    git config --global branch.rebase true
+    git config --global branch.autosetuprebase always
+        ...unless you use git pull --rebase
+
+
+Getting Started: Quick review of basic git
+================================================================================
+Quickreference for commands
+    http://ndpsoftware.com/git-cheatsheet.html
+
+* Every commit contains state of all files in the repo
+* A cherry-picked commit is the diff between itself and it's parent
+* Manipulating HEAD and branches: Checkout vs Reset
+ - Checkout: Checkout a branch or ref or paths to the working tree
+    - Context: Checkout a file, or folder (doc/index.html, doc/, .)
+    - Context: Checkout a branch (master, feature)
+    - Conetxt: Checkout a tag (v1.0), remote branch (origin/master), or ref (56cbbef3)
+ - Reset: Move branches around arbitarily
+    - Context: Modify git, don't touch my workspace
+    - Context: Make my work look like remote, trash my stuff
+
+* Commits as snapshots
+ - http://git-scm.com/figures/18333fig0105-tn.png
+    (src: http://git-scm.com/book/en/Getting-Started-Git-Basics)
