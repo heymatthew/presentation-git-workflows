@@ -199,74 +199,41 @@
 							```
 						</script>
 					</section>
-					<section>
-						<!-- hacked in position:absolute to stop this page scrolling -->
-						<h3>Some fun achievements I've unlocked</h3>
-						<div class="fragment current-visible" style="position:absolute;">
-							<p>--------------------------------------------------------------------------------</p>
-							<p>Cathedral Worker (Level 1)</p>
-							<p>Cloned submodule repository and checked out commits specified by superproject.</p>
-							<p>--------------------------------------------------------------------------------</p>
-						</div>
-						<div class="fragment current-visible" style="position:absolute;">
-							<p>--------------------------------------------------------------------------------</p>
-							<p>Garage Inventor (Level 1)</p>
-							<p>Used a custom alias for a Git command</p>
-							<p>--------------------------------------------------------------------------------</p>
-						</div>
-						<div class="fragment current-visible" style="position:absolute;">
-							<p>--------------------------------------------------------------------------------</p>
-							<p>Banker (Level 5)</p>
-							<p>Join two or more development histories together with git-merge.</p>
-							<p>--------------------------------------------------------------------------------</p>
-						</div>
-						<div class="fragment current-visible" style="position:absolute;">
-							<p>--------------------------------------------------------------------------------</p>
-							<p>Apprentice Thug (Level 3)</p>
-							<p>Forced pushed a branch with git-push -f</p>
-							<p>--------------------------------------------------------------------------------</p>
-						</div>
-						<div class="fragment current-visible" style="position:absolute;">
-							<p>--------------------------------------------------------------------------------</p>
-							<p>Let there be light</p>
-							<p>Commit without a parent.</p>
-							<p>--------------------------------------------------------------------------------</p>
-						</div>
-						<div class="fragment current-visible">
-							<p>If there's more interest...<p>
-							<p><a href="pages/git-achievements/index.html" target="_blank">
-								--> achievements -->
-							</a></p>
-						</div>
+					<section data-markdown>
+						* Cathedral Worker: Cloned submodule repository and checked out commits specified by superproject
+						* Garage Inventor: Used a custom alias
+						* Banker: Join two development histories together with git-merge.
+						* Apprentice Thug: Forced pushed a branch
+						* Let there be light: Commit without a parent.
+
+						And [more](pages/git-achievements/index.html)
 					</section>
-					<section data-background-image="images/dazzle.gif">
-					</section>
+
 					<section>
 						<h3>Typical git workflow</h3>
 						<img
 							src="images/individual-workflow.svg"
-							height="500px"
-						>
+			 height="500px"
+		>
 					</section>
-					<section>
-						<h3>Tools suited to personal workflow</h3>
-						<div data-markdown>
-							- Personal workflows...
+						<section>
+							<h3>Tools suited to personal workflow</h3>
+							<div data-markdown>
+								- Personal workflows...
 								- **Isolate and Triage: Context hunting** <-- you are here
 								- Work: Mastering branches
 								- Update, Test: Audit work interactively
 								- Share: Manage merge conflicts like a pro
-						</div>
-						<img
-							src="images/individual-workflow.svg"
-							height="500px"
-						>
-					</section>
-					<section data-markdown> <!-- Context hunting: Log Bisect, Blame, Pickaxe -->
-						<script type="text/template">
+							</div>
+							<img
+		src="images/individual-workflow.svg"
+	height="500px"
+ >
+						</section>
+						<section data-markdown>
 							### Context hunting / Isolate, Triage
 							----------------------------------------
-							This is a BEFORE YOU START thing, helps isolate and triage
+							BEFORE YOU START, helps isolate and triage
 
 							Context is important when you start to
 
@@ -281,7 +248,6 @@
 									* Bisect - binary search for bugs
 									* Blame - revision and author for lines of a file
 									* Pickaxe - Search commit diffs for changes
-						</script>
 					</section>
 					<section> <!-- Git log -->
 						<div data-markdown>
@@ -712,9 +678,6 @@
 							```
 						</div>
 					</section>
-					<section data-background-image="images/3-steps.gif">
-						<h3>How I hope you feel when you walk out of this room<h3>
-					</section>
 				</section>
 
 				<section>
@@ -810,9 +773,7 @@
 							```
 						</div>
 					</section>
-					<section>
-						<img src="images/under-attack.gif">
-					</section>
+
 					<section>
 						<div data-markdown>
 							### Clean history, rebase verses merge
@@ -835,9 +796,6 @@
 							```
 						</div>
 					</section>
-					<section data-background-image="images/git-to-svn-users.gif">
-						<h3>How an svn user sees git workflow</h3>
-					</section>
 				</section>
 
 				<section>
@@ -853,6 +811,7 @@
 							- Strategies for database patching on branches
 						</div>
 					</section>
+
 					<section>
 						<div data-markdown>
 							### Database patching on branches
@@ -1002,7 +961,6 @@
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				history: true,
-				mouseWheel: true,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
