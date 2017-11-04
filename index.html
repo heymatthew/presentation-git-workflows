@@ -51,70 +51,61 @@
 
 				<!-- Course Overview -->
 				<section data-markdown>
-					<script type="text/template">
-						## Course Overview
-						--------------------------------------------------------------------------------
-						* Getting Started
-						* Personal workflows
-						* Team workflows
-						* Release workflows
-					</script>
+					## Course Overview
+					--------------------------------------------------------------------------------
+					* Getting Started
+					* Personal workflows
+					* Team workflows
+					* Release workflows
 				</section>
 
 				<!-- Setup your git fu, review some basic stuff -->
 				<section>
 					<section data-markdown>
-						<!--data-background-transition="slide"-->
-						<script type="text/template">
-							* **Getting Started** <-- you are here
-							* Personal workflows
-							* Team workflows
-							* Release workflows
-							--------------------------------------------------------------------------------
-							## Overview: Getting started
-							- Basic config for these machines
-							- Good config defaults
-							- Quick review of basic git
-						</script>
+						* **Getting Started** <-- you are here
+						* Personal workflows
+						* Team workflows
+						* Release workflows
+						--------------------------------------------------------------------------------
+						## Overview: Getting started
+						- Basic config for these machines
+						- Good config defaults
+						- Quick review of basic git
 					</section>
 					<section data-markdown>
-						<script type="text/template">
-							### Basic config for these machines
+						### Basic config for these machines
 
-							Git would like you to specify
+						Git would like you to specify
 
-							1. Your full name
-							1. Your email address
-							1. Your favourite text editor
+						1. Your full name
+						1. Your email address
+						1. Your favourite text editor
 
-							```
-							git config --global user.name "Dr. Henry Killinger"
-							git config --global user.email "fu@bar.baz"
-							git config --global core.editor vim
-							```
+						```
+						git config --global user.name "Dr. Henry Killinger"
+						git config --global user.email "fu@bar.baz"
+						git config --global core.editor vim
+						```
 
-							All these settings are storred in **~/.gitconfig**
-						</script>
+						All these settings are storred in **~/.gitconfig**
 					</section>
 					<section data-markdown>
-						<script type="text/template">
-							### Sane defaults for day to day use
+						### Sane defaults for day to day use
 
-							* Use colour to highlight branches and diffs
-							* Make sure you only push the branch you're on
-							* Show branches and tags in git log
-							* Setup rebase as the default strategy for git pull
+						* Use colour to highlight branches and diffs
+						* Make sure you only push the branch you're on
+						* Show branches and tags in git log
+						* Setup rebase as the default strategy for git pull
 
-							```
-							git config --global color.ui always
-							git config --global push.default current
-							git config --global log.decorate full
-							git config --global branch.rebase true
-							git config --global branch.autosetuprebase always
-							```
+						```
+						git config --global color.ui always
+						git config --global push.default current
+						git config --global log.decorate full
+						git config --global branch.rebase true
+						git config --global branch.autosetuprebase always
+						```
 
-							All these settings are storred in **~/.gitconfig**
-						</script>
+						All these settings are storred in **~/.gitconfig**
 					</section>
 					<section>
 						<h3>Quick review of basic git</h3>
@@ -130,74 +121,64 @@
 				<!-- Personal workflows -->
 				<section>
 					<section data-markdown>
-						<script type="text/template">
-							* Getting Started
-							* **Personal workflows** <-- you are here
-							* Team workflows
-							* Release workflows
-							--------------------------------------------------------------------------------
-							## Overview: Personal workflows
-							- Unlocking achievements, making git a bit more fun
-							- Context hunting / Isolate and Triage issues
-							- Mastering branches
-							- Audit work interactively
-							- Manage merge conflicts like a pro
-						</script>
+						* Getting Started
+						* **Personal workflows** <-- you are here
+						* Team workflows
+						* Release workflows
+						--------------------------------------------------------------------------------
+						## Overview: Personal workflows
+						- Unlocking achievements, making git a bit more fun
+						- Context hunting / Isolate and Triage issues
+						- Mastering branches
+						- Audit work interactively
+						- Manage merge conflicts like a pro
 					</section>
 					<section data-markdown>
-						<script type="text/template">
-							### Unlocking achievements, making git a bit more fun
+						### Unlocking achievements, making git a bit more fun
 
-							Unlock Achievements!
+						Unlock Achievements!
 
-							Track friends over RSS!
+						Track friends over RSS!
 
-							Flaunt your achievements with a Splashy page!
-						</script>
+						Flaunt your achievements with a Splashy page!
 					</section>
 					<section data-markdown>
-						<script type="text/template">
-							![fork](images/github-git-acheivements.png)
-						</script>
+						![fork](images/github-git-acheivements.png)
 					</section>
 					<section data-markdown>
-						<script type="text/template">
-							### Unlocking achievements, making git a bit more fun
-							----------------------------------------
-							If you have a github account
+						### Unlocking achievements, making git a bit more fun
+						----------------------------------------
+						If you have a github account
 
-							1. Go to https://github.com/icefox/git-achievements
-							2. Fork that repo
-							3. Go to your forked project, and clone it
-							----------------------------------------
+						1. Go to https://github.com/icefox/git-achievements
+						2. Fork that repo
+						3. Go to your forked project, and clone it
+						----------------------------------------
 
-							No account? You can still run it locally
-							```
-							git clone https://github.com/icefox/git-achievements.git
-							```
-						</script>
+						No account? You can still run it locally
+						```
+						git clone https://github.com/icefox/git-achievements.git
+						```
 					</section>
 					<section data-markdown>
-						<script type="text/template">
-							### Setup
-							Alias git-achievements in your shellrc file
+						### Setup
+						Alias git-achievements in your shellrc file
 
-							```
-							vim ~/.bashrc
-							```
-							```
-							export PATH="$PATH:~/git/git-achievements"
-							alias git="git-achievements"
-							```
-							```
-							git config --global achievement.upload "true"
-							```
+						```
+						vim ~/.bashrc
+						```
+						```
+						export PATH="$PATH:~/git/git-achievements"
+						alias git="git-achievements"
+						```
+						```
+						git config --global achievement.upload "true"
+						```
 
-							Keep your achievements after the course, save this
-							```
-							~/.git-achievements.log
-							```
-						</script>
+						Keep your achievements after the course, save this
+						```
+						~/.git-achievements.log
+						```
 					</section>
 					<section data-markdown>
 						* Cathedral Worker: Cloned submodule repository and checked out commits specified by superproject
@@ -251,128 +232,110 @@
 					</section>
 					<section> <!-- Git log -->
 						<div data-markdown>
-							<script type="text/template">
-								### Context hunting / Isolate, Triage
-								- Personal workflows...
-									- Isolate and Triage: Context hunting
-										* Log <-- you are here
-										* Bisect
-										* Blame
-										* Pickaxe
-								----------------------------------------
-							</script>
+							### Context hunting / Isolate, Triage
+							- Personal workflows...
+								- Isolate and Triage: Context hunting
+									* Log <-- you are here
+									* Bisect
+									* Blame
+									* Pickaxe
+							----------------------------------------
 						</div>
 						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							<script type="text/template">
-								Regular log
-								```
-								git log
-								```
-								![regular git log](images/git-log.png)
-							</script>
+							Regular log
+							```
+							git log
+							```
+							![regular git log](images/git-log.png)
 						</div>
 						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							<script type="text/template">
-								Show me contents of patches
-								```
-								git log -p
-								```
-								![patch mode git log](images/git-log-p.png)
-							</script>
+							Show me contents of patches
+							```
+							git log -p
+							```
+							![patch mode git log](images/git-log-p.png)
 						</div>
 						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							<script type="text/template">
-								Show me a summary of patches
-								```
-								git log --stat
-								```
-								![stats](images/git-log-stat.png)
-							</script>
+							Show me a summary of patches
+							```
+							git log --stat
+							```
+							![stats](images/git-log-stat.png)
 						</div>
 						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							<script type="text/template">
-								Find changes associated with text in a commit message:
-								```
-								git log --grep '$search_term'
-								git log --grep 'bug#1234'
-								```
-								![grep for messages](images/git-log-grep-term.png)
-							</script>
+							Find changes associated with text in a commit message:
+							```
+							git log --grep '$search_term'
+							git log --grep 'bug#1234'
+							```
+							![grep for messages](images/git-log-grep-term.png)
 						</div>
 					</section>
 					<section> <!-- Git bisect -->
 						<div data-markdown>
-							<script type="text/template">
-								### Context hunting / Isolate, Triage
-								- Personal workflows...
-									- Isolate and Triage: Context hunting
-										* Log
-										* Bisect <-- you are here
-										* Blame
-										* Pickaxe
-								----------------------------------------
-							</script>
-						</div>
-						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							<script type="text/template">
-								To start bisecting, you use these commands
-								```
-								git bisect start $bad_commit $good_commit
-								```
-								'Unwanted' behaviour?
-								```
-								git bisect bad
-								```
-								'Wanted' behaviour?
-								```
-								git bisect good
-								```
-								Tidy up
-								```
-								git bisect reset
-								```
-							</script>
-						</div>
-						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							<script type="text/template">
-								Sometimes it's guess work
-								```
-								git bisect skip
-								```
-
-								Sometimes it's complicated to get back to your guess spot
-								```
-								git bisect log > bisect.log
-								git bisect reply bisect.log
-								```
-							</script>
-						</div>
-					</section>
-					<section data-markdown> <!-- Git blame -->
-						<script type="text/template">
 							### Context hunting / Isolate, Triage
 							- Personal workflows...
 								- Isolate and Triage: Context hunting
 									* Log
-									* Bisect
-									* Blame <-- you are here
+									* Bisect <-- you are here
+									* Blame
 									* Pickaxe
 							----------------------------------------
-							Basic usage
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute;">
+							To start bisecting, you use these commands
 							```
-							git blame $filename
-							git show $hash
+							git bisect start $bad_commit $good_commit
 							```
-							Ignore whitespace
+							'Unwanted' behaviour?
 							```
-							git blame -w $filename
+							git bisect bad
 							```
-							Copy paste detection in a file, and across the repo
+							'Wanted' behaviour?
 							```
-							git blame -M $filename
-							git blame -C $filename
+							git bisect good
 							```
-						</script>
+							Tidy up
+							```
+							git bisect reset
+							```
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute;">
+							Sometimes it's guess work
+							```
+							git bisect skip
+							```
+
+							Sometimes it's complicated to get back to your guess spot
+							```
+							git bisect log > bisect.log
+							git bisect reply bisect.log
+							```
+						</div>
+					</section>
+					<section data-markdown> <!-- Git blame -->
+						### Context hunting / Isolate, Triage
+						- Personal workflows...
+							- Isolate and Triage: Context hunting
+								* Log
+								* Bisect
+								* Blame <-- you are here
+								* Pickaxe
+						----------------------------------------
+						Basic usage
+						```
+						git blame $filename
+						git show $hash
+						```
+						Ignore whitespace
+						```
+						git blame -w $filename
+						```
+						Copy paste detection in a file, and across the repo
+						```
+						git blame -M $filename
+						git blame -C $filename
+						```
 					</section>
 					<section> <!-- Git pickaxe -->
 						<div data-markdown>
@@ -682,27 +645,28 @@
 
 				<section>
 					<section data-markdown>
-						<script type="text/template">
-							* Getting Started
-							* Personal workflows
-							* **Team workflows** <-- you are here
-							* Release workflows
-							--------------------------------------------------------------------------------
-							## Overview: Team workflows
-							- Quickly setup local, network accessible repos
-							- Working with people who don't enjoy source control
-							- Clean history, rebase verses merge
-						</script>
+						* Getting Started
+						* Personal workflows
+						* **Team workflows** <-- you are here
+						* Release workflows
+						--------------------------------------------------------------------------------
+						## Overview: Team workflows
+						- Quickly setup local, network accessible repos
+						- Working with people who dont enjoy source control
+						- Clean history, rebase verses merge
 					</section>
+
 					<section>
 						<img src="images/share.gif">
 					</section>
+
 					<section>
 						<div data-markdown>
 							### Quickly setup local, network accessible repos
 							![](images/dictator-lieutenant-contributors.png)
 						</div>
 					</section>
+
 					<section>
 						<div data-markdown>
 							### Quickly setup local, network accessible repos
