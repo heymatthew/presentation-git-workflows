@@ -801,8 +801,8 @@
 							* Team workflows
 							* **Release workflows** <-- you are here
 							--------------------------------------------------------------------------------
-							## Overview: Client workflows
-							- Strategies for dealing with client requirements
+							## Overview: Release workflows
+							- Strategies for dealing with release requirements
 							- Strategies for database patching on branches
 						</div>
 					</section>
@@ -823,12 +823,10 @@
 
 					<section>
 						<div data-markdown>
-							### Strategies for dealing with client requirements
+							### Strategies for dealing with release requirements
 							The battle of flexability vs simplicity
 
 							----------------------------------------
-
-							A typical client may ask you to be flexable on the following
 
 							* Track changes, find bugs and release when you can
 							* Working on releases in parallel
@@ -843,7 +841,7 @@
 
 					<section>
 						<div data-markdown>
-							### Client requirements: Linear history
+							### Release requirements: Linear history
 							* Simple
 							* Track changes, find bugs and release when you can
 							* Easy to bring new devs on board
@@ -855,7 +853,7 @@
 
 					<section>
 						<div data-markdown>
-							### Client requirements: Merge forward releases
+							### Release requirements: Merge forward releases
 							* Fairly simple
 							* Work on multiple releases at the same time
 							* Can work on upstream while downstream is still going
@@ -866,7 +864,7 @@
 
 					<section>
 						<div data-markdown>
-							### Client requirements: Feature releases
+							### Release requirements: Feature releases
 							* Every piece of work is a feature
 							* Features are octo-merged into a release candidate
 							* Need to track production somehow
@@ -892,7 +890,7 @@
 
 					<section>
 						<div data-markdown>
-							### Client requirements: Microkernel architecture
+							### Release requirements: Microkernel architecture
 							* Difficulty is abstracted to the application
 							* Modules of application can be worked on at the same time
 							* Release would package together multiple pieces of work
