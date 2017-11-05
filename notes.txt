@@ -1,0 +1,77 @@
+Software
+- Git: https://git-scm.com/download/win
+- Tortose Git: https://tortoisegit.org/
+- Git pad: https://github.com/github/GitPad
+  when asked if you "want to use gitpad as your default editor for git", choose yes
+
+Reading
+- Visual Studio Team Services git pages: https://www.visualstudio.com/team-services/git/
+
+Timings
+9:30 - 12:00 Basics and Personal workflows
+12:00 - 12:30 Lunch
+12:30 - 5:00 Team and Release workflows
+
+
+An argument for knowing Git CLI
+- mature
+- robust
+- other tools abstract over it
+
+Lets start, configuring your git
+- remove git configs
+- create new repo on desktop
+- show what this looks like on the filesystem
+- show off git status
+- analogy, git status like pick your own story
+- show .git/objects
+- create a file
+- git status
+- .git/objects
+- add a file
+- git status
+- git commit
+- git config, show slide
+
+Git config
+- get people to set their variables
+- %programfiles%/windows nt/accessories/wordpad.exe"
+- discuss core.eol
+- discuss --global
+- set core.eol native
+- git config --list
+- git config --list --show-origin
+- git help
+- git help status
+
+Restoring files
+- remove file
+- checkout file
+- change file
+- checkout file
+
+Making changes to a file
+- git add file
+- git reset file
+- git add .
+- git reset .
+- git stash
+- git stash pop
+- git commit
+- git log
+- stash vs workspace vs local repository
+- right click, git gui here
+- modify file
+- ctrl + r in git gui
+- show diff
+
+Ignoring files
+- specific files
+- directories
+- regex matching
+
+TODO
+exercise to merge 2 heads and blame
+--no-ff
+move bisect to release
+checkout db dir
