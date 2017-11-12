@@ -823,10 +823,45 @@
 
 					<section data-markdown>
 						# Branching Strategies
-					</section>
+						Things that are great for any release strategy
+						- Production support
+						- Diff between points
+						- Reverting commits
+						- Reverting merges
+						- Logic vs State vs Data
+						- Backpatching
 
-					<section data-markdown>
-						# Breaking up the Monolith
+						Release strategies
+
+						Linear History (SVN-ish)
+						- Work on master
+						- Branch at release time
+						- Cherry pick to master on patch releases
+
+						Merge Forward Releases
+						- Branch with scoped work
+						- Work on release branch till ready
+						- Tag for release
+
+						Feature releases with linear history
+						- Branch from production
+						- Work till test complete
+						- Merge to master
+						- Branch at release time
+						- Merge to release branch for hotfixes
+						- Merge release branch into master on hotfix release
+
+						Feature Based Releases
+						- Branch features from Production
+						- Work till ready, merge releases back into your branches
+						- Create release candidates by octo merging heads
+
+						Microkernel Architecture
+						- Either break your repository up and use package dependencies to manage code
+							- git mv $file $folder
+						- Or break your repository up using folders, and manage your dependencies with something like docker tags
+						  - git tag
+							- git filter-branch OR git mv $file $folder
 					</section>
 
 					<section data-markdown>
