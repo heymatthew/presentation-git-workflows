@@ -249,7 +249,6 @@
 						- Personal workflows...
 							- Isolate and Triage: Context hunting
 								* Log - Show commit logs
-								* Bisect - binary search for bugs
 								* Blame - revision and author for lines of a file
 								* Pickaxe - Search commit diffs for changes
 					</section>
@@ -260,7 +259,6 @@
 							- Personal workflows...
 								- Isolate and Triage: Context hunting
 									* Log <-- you are here
-									* Bisect
 									* Blame
 									* Pickaxe
 							----------------------------------------
@@ -296,55 +294,11 @@
 						</div>
 					</section>
 
-					<section> <!-- Git bisect -->
-						<div data-markdown>
-							### Context hunting / Isolate, Triage
-							- Personal workflows...
-								- Isolate and Triage: Context hunting
-									* Log
-									* Bisect <-- you are here
-									* Blame
-									* Pickaxe
-							----------------------------------------
-						</div>
-						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							To start bisecting, you use these commands
-							```
-							git bisect start $bad_commit $good_commit
-							```
-							'Unwanted' behaviour?
-							```
-							git bisect bad
-							```
-							'Wanted' behaviour?
-							```
-							git bisect good
-							```
-							Tidy up
-							```
-							git bisect reset
-							```
-						</div>
-						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							Sometimes it's guess work
-							```
-							git bisect skip
-							```
-
-							Sometimes it's complicated to get back to your guess spot
-							```
-							git bisect log > bisect.log
-							git bisect reply bisect.log
-							```
-						</div>
-					</section>
-
 					<section data-markdown> <!-- Git blame -->
 						### Context hunting / Isolate, Triage
 						- Personal workflows...
 							- Isolate and Triage: Context hunting
 								* Log
-								* Bisect
 								* Blame <-- you are here
 								* Pickaxe
 						----------------------------------------
@@ -370,7 +324,6 @@
 							- Personal workflows...
 								- Isolate and Triage: Context hunting
 									* Log
-									* Bisect
 									* Blame
 									* Pickaxe <-- you are here
 							----------------------------------------
@@ -385,40 +338,6 @@
 							 - When did $mySillyVariable get referenced everywhere?
 
 							* Works with log, diff, and format-patch
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Activity: Testing bisect
-							1. Clone the jabberwocky repo, pull tags
-							2. Checkout the changes made with git log
-							3. Use bisect with v1 and v2 tags as good/bad commits
-							4. find the commit that broke the page
-							```
-							git clone https://github.com/heymatthew/jabberwocky
-							git fetch --tags
-							git log -p
-							git log --stat
-							git bisect start $bad $good
-							```
-							Exhibits wanted behaviour?
-							```
-							git bisect good
-							```
-							Exhibits unwanted behaviour?
-							```
-							git bisect bad
-							```
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							Tidy up with
-							```
-							git bisect reset
-							```
 						</div>
 					</section>
 
@@ -808,6 +727,106 @@
 							- Strategies for dealing with release requirements
 							- Strategies for database patching on branches
 						</div>
+					</section>
+
+					<section data-markdown>
+						# Changelogs
+					</section>
+
+					<section data-markdown>
+						# Reviewing between refs
+					</section>
+
+					<section> <!-- Git bisect -->
+						<div data-markdown>
+							### Context hunting / Isolate, Triage
+							- Personal workflows...
+								- Isolate and Triage: Context hunting
+									* Log
+									* Bisect <-- you are here
+									* Blame
+									* Pickaxe
+							----------------------------------------
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute;">
+							To start bisecting, you use these commands
+							```
+							git bisect start $bad_commit $good_commit
+							```
+							'Unwanted' behaviour?
+							```
+							git bisect bad
+							```
+							'Wanted' behaviour?
+							```
+							git bisect good
+							```
+							Tidy up
+							```
+							git bisect reset
+							```
+						</div>
+						<div data-markdown class="fragment current-visible" style="position:absolute;">
+							Sometimes it's guess work
+							```
+							git bisect skip
+							```
+
+							Sometimes it's complicated to get back to your guess spot
+							```
+							git bisect log > bisect.log
+							git bisect reply bisect.log
+							```
+						</div>
+					</section>
+
+					<section>
+						<div data-markdown>
+							### Activity: Testing bisect
+							1. Clone the jabberwocky repo, pull tags
+							2. Checkout the changes made with git log
+							3. Use bisect with v1 and v2 tags as good/bad commits
+							4. find the commit that broke the page
+							```
+							git clone https://github.com/heymatthew/jabberwocky
+							git fetch --tags
+							git log -p
+							git log --stat
+							git bisect start $bad $good
+							```
+							Exhibits wanted behaviour?
+							```
+							git bisect good
+							```
+							Exhibits unwanted behaviour?
+							```
+							git bisect bad
+							```
+						</div>
+					</section>
+
+					<section>
+						<div data-markdown> Tidy up with
+							```
+							git bisect reset
+							```
+						</div>
+					</section>
+
+					<section data-markdown>
+						# Reverting commits
+					</section>
+
+					<section data-markdown>
+						# Reverting merges
+					</section>
+
+					<section data-markdown>
+						# Branching Strategies
+					</section>
+
+					<section data-markdown>
+						# Breaking up the Monolith
 					</section>
 
 					<section data-markdown>
