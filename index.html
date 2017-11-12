@@ -830,8 +830,26 @@
 						- Reverting merges
 						- Logic vs State vs Data
 						- Backpatching
+						- Bisecting
+							-	Straight forward
+								- git bisect start HEAD 3.0.0
+								- git bisect good / bad / skip
+								- git bisect reset
+							- With data state
+								- git bisect start 3.1.0 3.0.0
+								- git bisect log
+								- git checkout REF FOLDER
+								- update state
+								- git checkout -f .
+								- git bisect good / bad / skip
+							- When you need to come back to something
+								- git bisect start
+								- git bisect good / bad / skip
+								- git bisect reflog
 
 						Release strategies
+
+						Tags vs Branches
 
 						Linear History (SVN-ish)
 						- Work on master
