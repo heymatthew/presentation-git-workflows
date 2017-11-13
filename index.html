@@ -140,8 +140,126 @@
 						## Exercise
 						- Using `git help`, pull up pages on `git config`
 						- Use help to find out how to unset `user.email`
-						- List your configurations using `--list`
-						- Open your .gitconfig file
+						- List configurations with `--list --show-origin`
+						- Open your .gitconfig file, how are fields saved?
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						## Personal Workflows 1
+						- Immediate productivity: Build and commit to repos
+						- Anatomy of a commit: Fields and behaviours
+						- Staging files: Steps leading to a commit
+						- All about Branches: Create and delete branches
+					</section>
+
+					<section data-markdown>
+						## Immediate productivity
+						Create a git repo
+
+						```bash
+						mkdir test
+						cd test
+						git init
+						git status
+						```
+					</section>
+
+					<section data-markdown>
+						## Immediate productivity
+						Adding and resetting files in the staging area
+						```bash
+						git status
+						git add myfile.txt
+						git reset myfile.txt
+						git status
+						```
+
+						Whole directories too
+						```bash
+						git add .
+						git add myfolder
+						git reset myfolder
+						```
+					</section>
+
+					<section data-markdown>
+						## Immediate productivity
+						Commit your staged changes
+
+						```bash
+						git commit
+						```
+
+						If you make a whoops, with an "empty" file
+
+					</section>
+
+					<section data-markdown>
+						## Immediate productivity
+						Delete a git repo
+
+						```bash
+						rmdir /S .git
+						git status
+						```
+					</section>
+
+					<section data-markdown>
+						## Exercise time!
+						Create a repo and commit to it
+						```
+						mkdir test_repo
+						cd test_repo
+						git init
+						git add
+						git commit
+						```
+
+						HOT TIP
+
+						Set verbose on commit and commit another file
+						```
+						git config --global commit.verbose true
+						git add
+						git commit
+						```
+					</section>
+
+					<section data-markdown>
+						## Exercise time 2!
+						Lookup help pages on git commit
+						```
+						git help
+						```
+
+						Based on help hints, remove a file and commit
+					</section>
+
+					<section data-markdown>
+						## Anatomy of a commit
+						Fields and behaviours
+					</section>
+
+					<section data-markdown>
+						## Staging files
+						Steps leading to a commit
+					</section>
+
+					<section data-markdown>
+						## All about Branches
+						Create and delete branches
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						## Personal Workflows 2
+						- Searching and Testing: How to find missing stuff
+						- Reset the world: Moving branches around arbitrarily
+						- Diffs and Commits: Tips for review
+						- Merge stuff, break stuff: Integrate your work
 					</section>
 				</section>
 
