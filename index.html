@@ -249,6 +249,13 @@
 							- Parent or parents
 					</section>
 
+					<section>
+						<p>One more time in context</p>
+						<div>
+							<img src="images/branches-commits.png" alt="git history">
+						</div>
+					</section>
+
 					<section data-markdown>
 						## Anatomy of a commit
 						Commits can be seen with
@@ -337,12 +344,136 @@
 
 					<section data-markdown>
 						## Staging files
-						Steps leading to a commit
+
+						![staged, unstages, commits, and stashes](images/staging-area.png)
+					</section>
+
+					<section data-markdown>
+						## Staging files
+						Lets talk about Test Driven Development
+
+						1. write test, RED
+						2. git add
+						3. write code, GREEN
+						4. git add, git commit
+						5. REFACTOR
+						6. git commit
+					</section>
+
+					<section data-markdown>
+						## Staging files
+						Staging files can be done in parts
+						```
+						git add -p
+						```
+
+						Unstaging files can be done in parts too
+						```
+						git reset -p
+						```
+					</section>
+
+					<section data-markdown>
+						## Staging files
+						If you want to reset to a GREEN state
+						```
+						git checkout .
+						git checkout myfile.txt
+						git status
+						```
+
+						This doesn't affect added files
+						```
+						git add -p
+						git checkout .
+						git status
+						```
+					</section>
+
+					<section data-markdown>
+						## Exercise time!
+						1. Make changes to 2 files already committed
+						2. Change 1 of them
+						3. Checkout everything
+						```
+						git checkout .
+						```
+						What changed?
+
+						How could you get rid of your staged changes?
 					</section>
 
 					<section data-markdown>
 						## All about Branches
-						Create and delete branches
+						Master is the default branch in git
+
+						Create branches with
+						```
+						git branch mybranch
+						```
+
+						Checkout branches with
+						```
+						git checkout mybranch
+						```
+					</section>
+
+					<section data-markdown>
+						## All about Branches
+						List branches with
+						```
+						git branch
+						```
+
+						...list all branches with -a
+						```
+						git branch -a
+						```
+					</section>
+
+					<section data-markdown>
+						## All about Branches
+						Delete branches with
+						```
+						git branch -d mybranch
+						```
+						It complains if this is the only copy, such as
+						- When another branch isn't referencing it
+						- When it's not shared / pushed
+
+						...use -D to go ahead deleting the only copy
+					</section>
+
+					<section data-markdown>
+						## All about Branches
+						Lets talk about immutability!
+					</section>
+
+					<section data-markdown>
+						## Exercise time!
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						TODO https://filezilla-project.org/sourcecode.php
+
+						```
+						git svn clone https://svn.filezilla-project.org/svn/FileZilla3
+						```
+
+						```
+						Initialized empty Git repository in /Users/mbgray/code/training/freightways/FileZilla3/.git/
+						W: +empty_dir: brances
+						W: +empty_dir: tags
+						W: +empty_dir: trunk
+						r1 = 1cecc4b6b4a907327130da10ca56f049b7e98101 (refs/remotes/git-svn)
+							A	trunk/src/interface/Mainfrm.h
+							A	trunk/src/interface/LocalTreeView.cpp
+							A	trunk/src/interface/RemoteTreeView.cpp
+							A	trunk/src/interface/LocalTreeView.h
+						...
+						```
 					</section>
 				</section>
 
