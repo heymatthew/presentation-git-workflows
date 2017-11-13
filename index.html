@@ -239,7 +239,100 @@
 
 					<section data-markdown>
 						## Anatomy of a commit
-						Fields and behaviours
+						Commits are
+						- Immutable
+						- SHA1 Hashed
+						- Built on
+							- File contents
+							- Timestamp
+							- Author
+							- Parent or parents
+					</section>
+
+					<section data-markdown>
+						## Anatomy of a commit
+						Commits can be seen with
+						```
+						git show
+						git log
+						```
+						And referenced by
+						- Hash
+						- Branch
+						- HEAD
+						- Relative to other commits
+					</section>
+
+					<section data-markdown>
+						## Anatomy of a commit
+						Looking at a commit
+						```
+						git show
+						```
+						```
+						commit d5401a6399234ddfe7bc986a0fe120359505aad5 (HEAD -> master)
+						Author: Matthew B. Gray &lt;code@matthew.nz&gt;
+						Date:   Mon Oct 13 13:01:15 2017 -0800
+
+								All of the things
+
+						diff --git a/bar.txt b/bar.txt
+						new file mode 100644
+						index 0000000..7bcc722
+						--- /dev/null
+						+++ b/bar.txt
+						@@ -0,0 +1 @@
+						+the bar has a bar tender
+						\ No newline at end of file
+						diff --git a/fu.txt b/fu.txt
+						new file mode 100644
+						index 0000000..f2e93e3
+						--- /dev/null
+						+++ b/fu.txt
+						@@ -0,0 +1 @@
+						+a fu enters the bar
+						\ No newline at end of file
+						```
+					</section>
+
+					<section data-markdown>
+						## Anatomy of a commit
+						Raw commit
+						```
+						git show
+						```
+						```
+						commit d5401a6399234ddfe7bc986a0fe120359505aad5
+						Author: Matthew B. Gray &lt;code@matthew.nz&gt;
+						Date:   Mon Oct 13 13:01:15 2017 -0800
+
+								All of the things
+
+						:000000 100644 0000000... 7bcc722... A  bar.txt
+						:000000 100644 0000000... f2e93e3... A  fu.txt
+						:000000 100644 0000000... bc979a6... A  lib/flubber.txt
+						:000000 100644 0000000... e69de29... A  lib/flubber2.txt
+						```
+					</section>
+
+					<section data-markdown>
+						## Exercise time!
+						What is the difference between
+						```
+						git show
+						git show HEAD
+						git show master
+						```
+
+						You can get at relative commits by appending ~, try it
+						```
+						git show HEAD~
+						git show master~
+						```
+
+						Find the parent commit with `git log`
+
+						Make log show all but the last commit with `HEAD~`
 					</section>
 
 					<section data-markdown>
