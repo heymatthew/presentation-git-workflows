@@ -24,30 +24,125 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-background="images/ao-labs.jpg">
-					<h1 style="color:#000">Git Workflows</h1>
+				<section>
+					<section data-background="images/ao-labs.jpg" style="color:#000">
+						<h1 style="color:#000">Git Workflows</h1>
 
-					<small style="color:#000">
+						<p>Slides by Matthew Gray</p>
 						<p>
-							Slides by Matthew Gray
-							<br>022 618 4814
-							<br>http://matthew.nz
-							<br>hey@matthew.nz
+							<small>
+								<br>hey@matthew.nz
+								<br>https://matthew.nz
+								<br>https://github.com/heymatthew
+							</small>
 						</p>
 
+						<p>Special thanks to</p>
 						<p>
-							Special thanks to
-							<br><strong>Jef Vratney:</strong> Opportunity setting and guidance
-							<br><strong>Section 6:</strong> Compatibility advice and feedback
+							<small>
+								<br><strong>Jef Vratney:</strong> Opportunity setting and guidance
+								<br><strong>Section 6:</strong> Compatibility advice and feedback
+							</small>
 						</p>
-					</small>
+					</section>
 
-					<aside class="notes" data-markdown>
-						* on vm, rm ~/.gitconfig
-						* Whoami?
-						* How mature is the course?
-						* Record questions about git
-					</aside>
+					<section data-markdown>
+						## Rough Timeline
+						9:30 - 12
+						- Setup and Overview
+						- Personal Workflows
+
+						12:30 - 5
+						- Team Workflows
+						- Release workflows
+
+						Tomorrow Onsite for Help
+					</section>
+
+					<section data-markdown>
+						## Why Git?
+						* Flexability
+						* Tooling
+						* Speed
+						* Momentum
+					</section>
+
+					<section data-markdown>
+						## SVN Comparison
+						* Decentralised, every clone is an entire copy
+						* Branches contain entire history
+						* Git tracks content
+						* SVN tracks deltas
+					</section>
+
+					<section data-markdown>
+						Git thinks in Snapshots, Not Differences
+
+						> The major difference between Git and any other VCS (Subversion and friends included)
+						> is the way Git thinks about its data.
+
+						src: git-scm.com, ch 1.3 Getting Started: Git Basics
+					</section>
+
+					<section>
+						<p>SVN commits</p>
+						<div>
+							<img src="images/branches-svn.png" alt="svn branching strategy">
+						</div>
+						<p>Git commits</p>
+						<div>
+							<img src="images/branches-commits.png" alt="git history">
+						</div>
+					</section>
+
+					<section data-markdown>
+						## Setup
+
+						Git
+
+						https://git-scm.com/download/win
+
+						Tortose Git
+
+						https://tortoisegit.org/
+
+						Git pad
+
+						https://github.com/github/GitPad
+
+						Yes! "...use gitpad as your default editor for git"
+					</section>
+
+					<section data-markdown>
+						## Configure
+						```bash
+						git config --global user.name "Matthew B. Gray"
+						git config --global user.email "code@matthew.nz"
+						git config --list
+						git config --list --show-origin
+						```
+
+						--global stores your global settings
+
+						Default puts settings into your repo
+					</section>
+
+					<section data-markdown>
+						## Docs
+						For help on git config, git has a help page
+						```bash
+						git help $command
+						git help config
+						```
+					</section>
+
+					<section data-markdown>
+						## Exercise
+						- Using `git help`, pull up pages on `git config`
+						- Use help to find out how to unset `user.email`
+						- List your configurations using `--list`
+						- Open your .gitconfig file
+					</section>
 				</section>
 
 				<!-- Course Overview -->
@@ -312,25 +407,6 @@
 
 					<section>
 						<h3>Mastering branches: Overview</h3>
-						<hr>
-						<div data-markdown class="fragment current-visible" style="position:absolute">
-							Git thinks in Snapshots, Not Differences
-
-							> The major difference between Git and any other VCS (Subversion and friends included)
-							> is the way Git thinks about its data.
-
-							src: git-scm.com, ch 1.3 Getting Started: Git Basics
-						</div>
-						<div class="fragment current-visible" style="position:absolute">
-							<p>SVN commits</p>
-							<div>
-								<img src="images/branches-svn.png" alt="svn branching strategy">
-							</div>
-							<p>Git commits</p>
-							<div>
-								<img src="images/branches-commits.png" alt="git history">
-							</div>
-						</div>
 						<div data-markdown class="fragment current-visible" style="position:absolute">
 							![](images/branches-typical.png)
 							![](images/branches-multi.png)
