@@ -891,6 +891,31 @@
 					</section>
 
 					<section data-markdown>
+						## Exercise Time!
+						Share your terrible poetry with your neighbour.
+
+						This is for unauthenticated read-only access.
+						```
+						git config --global alias.serve "daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/"
+						cd $repo
+						git serve
+						```
+						When this is setup, exchange details and try clone...
+						```
+						ipconfig
+						git clone git://$host_ip/ jabberwocky-fred
+						cd jabberwocky-fred
+						```
+						or add a remote...
+						```
+						git remote add git://$host_ip/ fred
+						git fetch --all
+						git log fred/master
+						git diff fred/master master
+						```
+					</section>
+
+					<section data-markdown>
 						## Share your work
 						Team Foundation Server
 
@@ -926,6 +951,12 @@
 						```
 						git config --global branch.rebase true
 						git config --global branch.autosetuprebase always
+						```
+
+						If you're not ready, you can pull the plug
+						```
+						git rebase --abort
+						git merge --abort
 						```
 					</section>
 
@@ -983,10 +1014,8 @@
 						## Git SVN bridge
 						Local git, remote svn
 
-						https://filezilla-project.org/sourcecode.php
-
 						```
-						git svn clone https://svn.filezilla-project.org/svn/FileZilla3
+						git svn clone https://github.com/heymatthew/jabberwocky jabberwocky-svn
 						```
 						```
 						Initialized empty Git repository in /Users/mbgray/code/training/freightways/FileZilla3/.git/
@@ -1065,7 +1094,7 @@
 						- Working with Upstream: .Net core
 						- CI/CD Tricks: Branch convention and Hooks
 						- Sign commits: Using a trust model for git
-						- Bisect: Triage when a big was introduced
+						- Bisect: Find when a big was introduced
 					</section>
 
 					<section data-markdown>
@@ -1192,8 +1221,19 @@
 					</section>
 
 					<section data-markdown>
+						Same thing but with tags
+						```
+						# Create and sign new tag
+						git tag -s v1.5.0 -m "Release 1.5.0 reviewed by the team"
+
+						# Verify
+						git tag -v v1.5.0
+						```
+					</section>
+
+					<section data-markdown>
 						## Bisect
-						Triage when a big was introduced. To start bisecting...
+						Find when a big was introduced. To start bisecting...
 						```
 						git bisect start $bad_commit $good_commit
 						```
@@ -1308,6 +1348,22 @@
 					</section>
 
 					<section data-markdown>
+						## Revert Caviet
+						Lets talk about fast forward merges
+
+						Expicitly avoid them with --no-ff
+
+						If your team wants to work like this every time...
+						```
+						git config branch.master.mergeoptions  "--no-ff"
+						```
+						Shows up in config as
+						```
+						[branch "master"]
+							mergeoptions = --no-ff
+						```
+					</section>
+					<section data-markdown>
 						## Linear Releases
 						Simple branching
 					</section>
@@ -1326,132 +1382,6 @@
 
 				<section>
 					<section>
-						<div data-markdown>
-							### Quickly setup local, network accessible repos
-							Share your terrible poetry with your neighbour.
-
-							This is for unauthenticated read-only access.
-							```
-							cd ~/jabberwocky/.git
-							touch git-daemon-export-ok
-							git daemon --reuseaddr --base-path=~/jabberwocky/ ~/jabberwocky/
-							```
-							Where ~/jabberwocky is the jabberwocky checkout.
-
-							When this is setup, exchange details and try clone...
-							```
-							git clone git://$host/ jabberwocky-neighbour
-							cd jabberwocky-neighbour
-							```
-							or add a remote...
-							```
-							git remote add git://$host/ neighbour
-							git fetch --all
-							git log neighbour/master
-							git diff neighbour/master master
-							```
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Working with people who don't enjoy source control
-							Idea #2: Manage their commits and merges
-
-							```
-							while true; do
-								clear;
-								git add .
-								git commit -m "$designer updated UX."
-								sleep 5;
-							done;
-							```
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Clean history, rebase verses merge
-							* When to merge: If you've pushed it, you can't change things without pain.
-							* If you have multiple conflicts, try for a merge
-							* Use KISS where possible
-
-							----------------------------------------
-							Discuss:
-							```
-							git pull --rebase
-							```
-							```
-							git config --global branch.autosetuprebase always
-							git pull
-							```
-							```
-							git rebase --abort
-							git merge --abort
-							```
-						</div>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<div data-markdown>
-							* Getting Started
-							* Personal workflows
-							* Team workflows
-							* **Release workflows** <-- you are here
-							--------------------------------------------------------------------------------
-							## Overview: Release workflows
-							- Strategies for dealing with release requirements
-							- Strategies for database patching on branches
-						</div>
-					</section>
-
-					<section data-markdown>
-						# Changelogs
-					</section>
-
-					<section data-markdown>
-						# Reviewing between refs
-					</section>
-
-					<section data-markdown>
-						# Reverting commits
-					</section>
-
-					<section data-markdown>
-						# Reverting merges
-					</section>
-
-					<section data-markdown>
-						# Branching Strategies
-						Production support: Things that are great for any release strategy
-						- Diff between points
-						- Reverting commits
-						- Reverting merges
-						- Logic vs State vs Data
-						- Backpatching
-						- Bisecting
-							-	Straight forward
-								- git bisect start HEAD 3.0.0
-								- git bisect good / bad / skip
-								- git bisect reset
-							- With data state
-								- git bisect start 3.1.0 3.0.0
-								- git bisect log
-								- git checkout REF FOLDER
-								- update state
-								- git checkout -f .
-								- git bisect good / bad / skip
-							- When you need to come back to something
-								- git bisect start
-								- git bisect good / bad / skip
-								- git bisect reflog
-
-						Release strategies
-
-						Tags vs Branches
-
 						Linear History (SVN-ish)
 						- Work on master
 						- Branch at release time
@@ -1483,12 +1413,6 @@
 							- git filter-branch OR git mv $file $folder
 							- great for controlling commit access and security requirements
 							- e.g. banking APIs
-					</section>
-
-					<section data-markdown>
-						TODO: Beyond here
-						1. review slides
-						2. migrate what you need
 					</section>
 
 					<section data-markdown>
