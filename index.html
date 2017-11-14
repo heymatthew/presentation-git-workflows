@@ -855,23 +855,16 @@
 				<section>
 					<section data-markdown>
 						## Team Workflows 1
+						- Remotes: Lets talk about branches on origin
 						- Share your work: Team Foundation Server
 						- Rebase vs Merge: An argument for clean history
-						- Remotes: Lets talk about branches on origin
 						- Git ignore: Don't bother tracking the superfluous
 					</section>
 
-					<section>
-						<img src="images/share.gif" alt="lion king, throwing simba as a metaphor for sharing">
-					</section>
-
-					<section data-markdownn>
-						## Share your work
-						Git just tracks content. All history is stored in .git directory, and sharing
-						is just mushing content around in there.
-
-						Clone coppies a remote
-						`git clone $location`
+					<section data-markdown>
+						## Remotes
+						Git just tracks content. All history is stored in .git, and sharing
+						is just syncing this directory.
 
 						Location can be...
 
@@ -883,6 +876,13 @@
 					</section>
 
 					<section data-markdown>
+						## Remotes
+						Clone coppies a remote
+						```
+						git clone $location
+						```
+						...creates a remote called "origin"
+
 						To modify remotes...
 						```
 						git remote add $alias $location
@@ -915,9 +915,13 @@
 						```
 					</section>
 
+					<section>
+						<img src="images/share.gif" alt="lion king, throwing simba as a metaphor for sharing">
+					</section>
+
 					<section data-markdown>
 						## Share your work
-						Team Foundation Server
+						Lets try again with Team Foundation Server
 
 						1. Lets get everyone on this project
 						https://fregroup.visualstudio.com/_git/AO%20Training
@@ -987,11 +991,6 @@
 						git reset origin/master --hard
 						```
 						When would you choose to do this?
-					</section>
-
-					<section data-markdown>
-						## Remotes
-						Lets talk about branches on origin
 					</section>
 
 					<section data-markdown>
