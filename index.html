@@ -923,10 +923,50 @@
 						```
 					</section>
 
+					<section data-markdown>
+						## Backups and Mirrors
+						There are lots of ways to keep backups
+						1. Copy paste a directory
+						2. Clone locally
+						3. Clone a bare repository
+						4. Have a mirror repository sync periodically
+					</section>
 
 					<section data-markdown>
 						## Backups and Mirrors
-						Keep a copy
+						Copy paste a directory
+
+						Exact copy including checkout and permissions, can push and pull
+					</section>
+
+					<section data-markdown>
+						## Backups and Mirrors
+						Clone locally
+						```
+						git clone source destination
+						```
+						* Creates a new directory called `destination`
+						* Sets `origin` to your repository
+					</section>
+
+					<section data-markdown>
+						## Backups and Mirrors
+						Clone a bare repository
+						```
+						git clone --bare source
+						```
+						Creates source.git
+					</section>
+
+					<section data-markdown>
+						## Backups and Mirrors
+						Have a mirror repository sync periodically
+						```
+						git clone --bare --mirror source
+						```
+						* Creates source.git
+						* Copies remotes (upstream, origin)
+						* Doesn't track their locations
 					</section>
 
 					<section data-markdown>
