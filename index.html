@@ -896,10 +896,21 @@
 
 						This is for unauthenticated read-only access.
 						```
-						git config --global alias.serve "daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/"
-						cd $repo
+						git config --global alias.serve ^
+							"daemon --verbose --export-all " ^
+							"--base-path=.git --reuseaddr --strict-paths .git/"
+						```
+
+						Run it in the base of any git checkout
+						```
+						git clone https://github.com/heymatthew/jabberwocky
+						cd jabberwocky
 						git serve
 						```
+					</section>
+
+					<section data-markdown>
+						## Exercise Time 2!
 						When this is setup, exchange details and try clone...
 						```
 						ipconfig
@@ -965,16 +976,19 @@
 					</section>
 
 					<section data-markdown>
+						## Rebase vs Merge
+						Demo with `exec` on `heymatthew/status-gem.git`
+					</section>
+
+					<section data-markdown>
 						## Exercise time!
-						1. Clone jabberwocky repo
-						2. Checkout 'master'
+						1. From the jabberwocky repo
 						3. Delete script tag on line 28
 						4. Commit, call it something like FIXUP
 						5. Interactive rebase onto the tag v1
 						6. Squash your fix with 'Oops' and give it a message.
 
 						```
-						git clone https://github.com/heymatthew/jabberwocky
 						cd jabberwocky
 						git add jabberwocky.html
 						git commit
@@ -990,12 +1004,21 @@
 						```
 						git reset origin/master --hard
 						```
-						When would you choose to do this?
+						When would you choose to rebase?
 					</section>
 
 					<section data-markdown>
 						## Git ignore
-						Don't bother tracking the superfluous
+						Sometimes your IDE creates cache files
+						
+						Or your project has compiled resources on disk
+
+						You can ignore these by creating `.gitignore` and checking it in
+					</section>
+
+					<section data-markdown>
+						## Git ignore
+						Lets open up the jquery `.gitignore` and talk over it
 					</section>
 				</section>
 
@@ -1013,7 +1036,21 @@
 						Local git, remote svn
 
 						```
-						git svn clone https://github.com/heymatthew/jabberwocky jabberwocky-svn
+						git svn clone SVN_REPO_ROOT_URL [DEST_FOLDER_PATH] \
+							-T TRUNK_REPO_PATH \
+							-t TAGS_REPO_PATH \
+							-b BRANCHES_REPO_PATH
+						```
+						If you use standard svn layouts
+						```
+						svn clone -s SVN_REPO_ROOT_URL [DEST_FOLDER_PATH]
+						```
+					</section>
+
+					<section data-markdown>
+						## Git SVN bridge
+						```
+						git svn clone -s https://github.com/heymatthew/jabberwocky jabberwocky-svn
 						```
 						```
 						Initialized empty Git repository in /Users/mbgray/code/training/freightways/FileZilla3/.git/
@@ -1076,8 +1113,55 @@
 					</section>
 
 					<section data-markdown>
+						## Exercise
+						Make a mirror of the AO Training project
+						https://fregroup.visualstudio.com/_git/AO%20Training
+
+						```
+						git clone --mirror --bare $repo $alias
+						```
+
+						View the directory, where are the files?
+
+						You can run `git log`, what's a command you can't run?
+					</section>
+
+					<section data-markdown>
 						## Changelogs
-						Share what happened
+						So you can get a log between points
+
+						```
+						git log v1..v2
+						```
+
+						```
+						git log --oneline v1..v2
+						```
+					</section>
+
+					<section data-markdown>
+						## Changelogs
+						Or you can go completely custom with --pretty=format:"CUSTOM"
+
+						```
+						git log v1..v2 \
+						  --pretty=format:"&lt;li&gt;
+						                    &lt;a href=\"https://github.com/heymatthew/jabberwocky/commit/%H\"&gt;
+						                      view commit 
+						                    &lt;/a&gt;
+						                   &lt;/li&gt;"
+						```
+					</section>
+
+					<section data-markdown>
+						## Exercise
+						Bring up the help pages on git log
+						```
+						git help log
+						```
+						And skip to the section titled "PRETTY FORMATS"
+
+						Can you construct a changelog which prints the commit message and author?
 					</section>
 
 					<section data-markdown>
@@ -1388,6 +1472,13 @@
 						[branch "master"]
 							mergeoptions = --no-ff
 						```
+					</section>
+
+					<section data-markdown>
+						## Revert
+						Knowing what you know now
+						* When is it appropriate to revert?
+						* When is it appropriate to rebase squash/drop?
 					</section>
 
 					<section data-markdown>
