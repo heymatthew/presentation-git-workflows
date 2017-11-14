@@ -187,13 +187,10 @@
 					<section data-markdown>
 						## Immediate productivity
 						Commit your staged changes
-
 						```bash
 						git commit
 						```
-
-						If you make a whoops, with an "empty" file
-
+						Save with an empty file and git will abort
 					</section>
 
 					<section data-markdown>
@@ -225,6 +222,8 @@
 						git add
 						git commit
 						```
+
+						What shows up in the commit message?
 					</section>
 
 					<section data-markdown>
@@ -323,6 +322,20 @@
 					</section>
 
 					<section data-markdown>
+						## Anatomy of a commit
+						Lets talk about immutability!
+						* Nodes represent diffs with respect to each other
+						* Nodes represent entire file tree on their own
+
+						Point to nodes with...
+						* **branch**			- a name to track your work
+						* **tag**					- a label, it doesn't move
+						* **commit hash**	- complete history and set of files
+						* **HEAD**				- your current checkout
+						* **$ref^**   		- above are $refs, chain ^ or ~ to go up a branch
+					</section>
+
+					<section data-markdown>
 						## Exercise time!
 						What is the difference between
 						```
@@ -340,12 +353,31 @@
 						Find the parent commit with `git log`
 
 						Make log show all but the last commit with `HEAD~`
+
+						What does `git log --stat` do?
+					</section>
+
+					<section data-markdown>
+						## Exercise time 2!
+						Take the hash from
+						```
+						git show
+						```
+
+						Pass it to `git log` and `git show`
 					</section>
 
 					<section data-markdown>
 						## Staging files
 
 						![staged, unstages, commits, and stashes](images/staging-area.png)
+
+						credit: http://ndpsoftware.com/git-cheatsheet.html
+					</section>
+
+					<section>
+						<h3>Typical git workflow</h3>
+						<img src="images/individual-workflow.svg" height="500" alt="personal workflow">
 					</section>
 
 					<section data-markdown>
@@ -362,7 +394,7 @@
 
 					<section data-markdown>
 						## Staging files
-						Staging files can be done in parts
+						Audit your work interactively with your staging area
 						```
 						git add -p
 						```
@@ -419,12 +451,26 @@
 					</section>
 
 					<section data-markdown>
+						## All about branches
+						![](images/branches-typical.png)
+						![](images/branches-multi.png)
+
+						Typical branching, images from http://git-scm.com
+					</section>
+
+					<section data-markdown>
+						## All about branches
+						![](images/branches-perspective.png)
+
+						How branches can be used for workflow
+					</section>
+
+					<section data-markdown>
 						## All about Branches
 						List branches with
 						```
 						git branch
 						```
-
 						...list all branches with -a
 						```
 						git branch -a
@@ -445,12 +491,303 @@
 					</section>
 
 					<section data-markdown>
-						## All about Branches
-						Lets talk about immutability!
+						## Exercise time!
+						Create and checkout a branch
+						```
+						git branch
+						git checkout
+						git status
+						```
+
+						Commit to the branch, copy the hash down
+
+						Delete the branch
+						```
+						git branch -d
+						```
+
+						Can you `show` the hash from the deleted branch?
+					</section>
+					<section data-markdown>
+						## Exercise time 2!
+						Run
+						```
+						git gc
+						```
+
+						Can you still see the hash? Why?
+						```
+						git help gc
+						```
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						## Personal Workflows 2
+						- Searching and Testing: How to find missing stuff
+						- Reset the world: Moving branches around arbitrarily
+						- Diffs and Commits: Tips for review
+						- Merge stuff, break stuff: Integrate your work
+					</section>
+
+					<section data-markdown>
+						## Searching and Testing
+						Understanding why something is in it's current form
+						1. Avoids regressing your codebase
+						2. Lets you know if code is under warantee
+						3. Lets you seek out a human when stuck
+					</section>
+
+					<section data-markdown>
+						## Searching and Testing
+						* Log - Show commit logs
+						* Pickaxe - Search commit diffs for changes
+						* Blame - revision and author for lines of a file
+					</section>
+
+					<section data-markdown>
+						## Searching and Testing
+						Regular log
+						```
+						git log
+						```
+
+						Show me contents of patches
+						```
+						git log -p
+						```
+
+						Show me a summary of patches
+						```
+						git log --stat
+						```
+
+						Find changes associated with text in a commit message:
+						```
+						git log --grep '$search_term'
+						git log --grep 'bug#1234'
+						```
+					</section>
+
+					<section data-markdown>
+						## Searching and Testing
+						```
+						git log -S 'some distinct line that changed'
+						git log --stat -S '$racebook_uri_result'
+						```
+						* Find all the changes to a line in your entire history
+						* The pickaxe can help find code that’s been deleted or moved
+						* Typically helps you with questions like
+						 - What happened to myFabuliousFunc()?
+						 - When did $mySillyVariable get referenced everywhere?
+
+						* Works with log, diff, and format-patch
+					</section>
+
+					<section data-markdown>
+						## Searching and Testing
+						```
+						git blame $filename
+						git show $hash
+						```
+						Ignore whitespace
+						```
+						git blame -w $filename
+						```
+						Copy paste detection in a file, and across the repo
+						```
+						git blame -C $filename
+						```
 					</section>
 
 					<section data-markdown>
 						## Exercise time!
+						1. Clone jquery repo
+						2. Use git log to find fixes to issue #14756
+						3. Use pickaxe to find commits that added or removed 'parseFloat'
+						4. Try git blame on the README.md file
+						5. With this info, when was the Contribution Guides section last modified?
+
+						```
+						git clone https://github.com/jquery/jquery
+						git log --grep 'asdf'
+						git log -S 'asdf'
+						git blame $file
+						git show $hash
+						```
+					</section>
+
+					<section data-markdown>
+						## Reset the world
+						Moving branches around arbitrarily
+
+						```
+						git checkout $branch
+						git reset $ref
+						```
+
+						Same command for repo and staging area
+						```
+						git reset $ref
+						git reset myfile.txt
+						git reset myfolder
+						```
+					</section>
+
+					<section data-markdown>
+						## Reset the world
+						Backup if you're not sure with a branch
+						```
+						git branch backup
+						git reset $ref
+						```
+
+						And if everything goes pear shaped
+						```
+						git reflog
+						```
+					</section>
+
+					<section data-background-image="images/oops.gif" data-markdown>
+						```
+						# Save my ass! What have I had 'checked out' recently?
+						git reflog
+						git reset REF
+						```
+					</section>
+
+					<section data-markdown>
+						## Exercise time!
+						In jquery, from master, create a backup branch
+
+						Run
+						```
+						git reset HEAD~
+						```
+
+						What happened?
+
+						What happens when you use `--hard`?
+
+						Reset to your backup branch
+
+						Run
+						```git reflog```
+
+						How else could you put master back?
+					</section>
+
+					<section data-markdown>
+						## Diffs and Commits
+						Review modifications to a file with
+						```
+						git diff
+						```
+						
+						Review modifications after git add with
+						```
+						git diff --staged
+						```
+					</section>
+
+					<section data-markdown>
+						## Diffs and Commits
+						You can specify ranges with dots to both log and diff
+
+						.. (two dots)
+						* differences between two revisions
+						* optionally limiting comparison to files/folders
+
+						... (three dots)
+						* differences between the *last common ancestor*
+						* also optionally limiting comparison to files/folders
+					</section>
+
+					<section data-markdown>
+						## Diffs and Commits
+						Differences between your branch and master
+						```
+						git diff master..HEAD
+						```
+
+						Differences added since you branched from master
+						```
+						git diff master...HEAD
+						```
+					</section>
+
+					<section data-markdown>
+						## Diffs and Commits
+						Similarly, differences between your branch and master
+						```
+						git log master..HEAD
+						```
+
+						Differences added since you branched from master
+						```
+						git log master...HEAD
+						```
+					</section>
+
+					<section data-markdown>
+						## Exercise time!
+						In your jquery checkout, diff between 1.1 and 1.2
+						```
+						git diff 1.1...1.2
+						```
+
+						What happens when you pass `--stat`?
+
+						Try with 3 and 2 dots, are they different? Why?
+
+						What happens when you run
+						```
+						git diff 1.1...
+						```
+
+						Repeat with `git log`
+					</section>
+
+					<section data-markdown>
+						## Merge stuff, break stuff
+						Check out the branch you want your stuff in, and merge with git merge
+						```
+						git checkout master
+						git merge mybranch
+						```
+
+						Or pull other people's stuff into your branch
+						```
+						git checkout mybranch
+						git merge master
+						git merge anotherbranch
+						```
+					</section>
+
+					<section data-markdown>
+						## Merge stuff, break stuff
+						Source control is about social coding and interactions.
+
+						A conflict should be a conversation. When you see
+						```
+						CONFLICT (content): Merge conflict in jabberwocky.html
+						Automatic merge failed; fix conflicts and then commit the result.
+						```
+						Get info with
+						```
+						git status
+						git blame $file
+						```
+						Markers are usually HEAD and a $ref, wher
+
+						1. HEAD is work of yours
+						2. $ref is the thing you're in conflict with
+
+						```
+						git reflog
+						git merge $ref
+						```
 					</section>
 				</section>
 
@@ -475,378 +812,55 @@
 						...
 						```
 					</section>
-				</section>
-
-				<section>
-					<section data-markdown>
-						## Personal Workflows 2
-						- Searching and Testing: How to find missing stuff
-						- Reset the world: Moving branches around arbitrarily
-						- Diffs and Commits: Tips for review
-						- Merge stuff, break stuff: Integrate your work
-					</section>
-				</section>
-
-				<!-- Course Overview -->
-				<section>
-					<div data-markdown>
-						## Course Overview
-						--------------------------------------------------------------------------------
-						* Getting Started
-						* Personal workflows
-						* Team workflows
-						* Release workflows
-					</div>
-
-					<aside class="notes" data-markdown>
-						* 5 minute breaks on the hour
-						* 9:30 - 12:00 Basics and Personal workflows
-						* 12:30 - 5:00 Team and Release workflows
-					</aside>
-				</section>
-
-				<section>
-					<section data-markdown>
-						* **Getting Started** <-- you are here
-						* Personal workflows
-						* Team workflows
-						* Release workflows
-						--------------------------------------------------------------------------------
-						## Overview: Getting started
-						- Basic config for these machines
-						- Good config defaults
-						- Quick review of basic git
-					</section>
 
 					<section data-markdown>
-						Exercise time!
-
-						* Init desktop
-						* Open in explorer
-						* git status
-						* git add
-						* git commit
-						* setting up your user
-					</section>
-
-					<section data-markdown>
-						### Basic config for these machines
-
-						Git would like you to specify
-
-						1. Your full name
-						1. Your email address
-						1. Your favourite text editor
-
+						### Rebase
 						```
-						git config --global user.name "Dr. Henry Killinger"
-						git config --global user.email "fu@bar.baz"
-						git config --global core.editor vim
-						```
-
-						All these settings are storred in **~/.gitconfig**
-					</section>
-
-					<section data-markdown>
-						### Sane defaults for day to day use
-
-						* Use colour to highlight branches and diffs
-						* Make sure you only push the branch you're on
-						* Show branches and tags in git log
-						* Setup rebase as the default strategy for git pull
-
-						```
-						git config --global color.ui always
-						git config --global push.default current
-						git config --global log.decorate full
 						git config --global branch.rebase true
 						git config --global branch.autosetuprebase always
 						```
 
 						All these settings are storred in **~/.gitconfig**
 					</section>
-
-					<section>
-						<h3>Quick review of basic git</h3>
-						<p>
-							<a href="pages/git-cheatsheet.html" target="_blank">
-								http://ndpsoftware.com/git-cheatsheet.html
-							</a>
-						</p>
-						<div><img alt="git cheetsheet" src="images/qr-cheatsheet.png" style="border:0"></div>
-					</section>
 				</section>
 
-				<!-- Personal workflows -->
 				<section>
 					<section data-markdown>
-						* Getting Started
-						* **Personal workflows** <-- you are here
-						* Team workflows
-						* Release workflows
-						--------------------------------------------------------------------------------
-						## Overview: Personal workflows
-						- Context hunting / Isolate and Triage issues
-						- Mastering branches
-						- Audit work interactively
-						- Manage merge conflicts like a pro
-					</section>
+						Headless state
 
-					<section>
-						<h3>Typical git workflow</h3>
-						<img src="images/individual-workflow.svg" height="500" alt="personal workflow">
-					</section>
-
-					<section>
-						<h3>Tools suited to personal workflow</h3>
-						<div data-markdown>
-							- Personal workflows...
-							- **Isolate and Triage: Context hunting** <-- you are here
-							- Work: Mastering branches
-							- Update, Test: Audit work interactively
-							- Share: Manage merge conflicts like a pro
-						</div>
-						<img src="images/individual-workflow.svg" height="500" alt="personal workflow">
+						If you're not on a branch, git puts you in a headless state
+						```
+						git checkout $tag
+						git checkout $commit
+						```
 					</section>
 
 					<section data-markdown>
-						### Context hunting / Isolate, Triage
-						----------------------------------------
-						BEFORE YOU START, helps isolate and triage
-
-						Context is important when you start to
-
-						1. Avoid regressing your codebase
-						2. Find out if code is still under warantee
-						3. Get help if you get stuck, seek out a human
-						----------------------------------------
-
-						- Personal workflows...
-							- Isolate and Triage: Context hunting
-								* Log - Show commit logs
-								* Blame - revision and author for lines of a file
-								* Pickaxe - Search commit diffs for changes
-					</section>
-
-					<section> <!-- Git log -->
-						<div data-markdown>
-							### Context hunting / Isolate, Triage
-							- Personal workflows...
-								- Isolate and Triage: Context hunting
-									* Log <-- you are here
-									* Blame
-									* Pickaxe
-							----------------------------------------
-						</div>
-						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							Regular log
-							```
-							git log
-							```
-							![regular git log](images/git-log.png)
-						</div>
-						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							Show me contents of patches
-							```
-							git log -p
-							```
-							![patch mode git log](images/git-log-p.png)
-						</div>
-						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							Show me a summary of patches
-							```
-							git log --stat
-							```
-							![stats](images/git-log-stat.png)
-						</div>
-						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							Find changes associated with text in a commit message:
-							```
-							git log --grep '$search_term'
-							git log --grep 'bug#1234'
-							```
-							![grep for messages](images/git-log-grep-term.png)
-						</div>
-					</section>
-
-					<section data-markdown> <!-- Git blame -->
-						### Context hunting / Isolate, Triage
-						- Personal workflows...
-							- Isolate and Triage: Context hunting
-								* Log
-								* Blame <-- you are here
-								* Pickaxe
-						----------------------------------------
-						Basic usage
+						Trying something like this...
 						```
-						git blame $filename
-						git show $hash
+						git checkout HEAD^
 						```
-						Ignore whitespace
-						```
-						git blame -w $filename
-						```
-						Copy paste detection in a file, and across the repo
-						```
-						git blame -M $filename
-						git blame -C $filename
-						```
-					</section>
+						Results in something like this...
 
-					<section> <!-- Git pickaxe -->
-						<div data-markdown>
-							### Context hunting / Isolate, Triage
-							- Personal workflows...
-								- Isolate and Triage: Context hunting
-									* Log
-									* Blame
-									* Pickaxe <-- you are here
-							----------------------------------------
-							```
-							git log -S 'some distinct line that changed'
-							git log --stat -S '$racebook_uri_result'
-							```
-							* Find all the changes to a line in your entire history
-							* The pickaxe can help find code that’s been deleted or moved
-							* Typically helps you with questions like
-							 - What happened to myFabuliousFunc()?
-							 - When did $mySillyVariable get referenced everywhere?
+						```
+						You are in 'detached HEAD' state. You can look around, make experimental
+						changes and commit them, and you can discard any commits you make in this
+						state without impacting any branches by performing another checkout.
 
-							* Works with log, diff, and format-patch
-						</div>
+						If you want to create a new branch to retain commits you create, you may
+						do so (now or later) by using -b with the checkout command again. Example:
+
+						git checkout -b new_branch_name
+
+						HEAD is now at f4b37d8... CSS: Return values should be numbers
+						```
+						Which is git being melodramatic
 					</section>
 
 					<section>
 						<div data-markdown>
-							### Activity: Testing log, pickaxe, blame and show
-							1. Clone jquery repo
-							2. Use git log to find fixes to issue #14756
-							3. Use pickaxe to find commits that added or removed 'parseFloat'
-							4. Try git blame on the .gitignore file
-							5. With this info, show the commit that blacklisted bower_components
-
-							```
-							git clone https://github.com/jquery/jquery
-							git log --grep 'asdf'
-							git log -S 'asdf'
-							git blame $file
-							git show $hash
-							```
-						</div>
-					</section>
-
-					<section>
-						<h3>Tools suited to personal workflow</h3>
-						<div data-markdown>
-							- Personal workflows...
-								- Isolate and Triage: Context hunting
-								- **Work: Mastering branches** <-- you are here
-								- Update, Test: Audit work interactively
-								- Share: Manage merge conflicts like a pro
-						</div>
-						<img src="images/individual-workflow.svg" height="500" alt="personal workflow">
-					</section>
-
-					<section>
-						<h3>Mastering branches: Overview</h3>
-						<div data-markdown class="fragment current-visible" style="position:absolute">
-							![](images/branches-typical.png)
-							![](images/branches-multi.png)
-
-							Typical branching, images from http://git-scm.com
-						</div>
-						<div data-markdown class="fragment current-visible" style="position:absolute">
-							![](images/branches-perspective.png)
-
-							How branches can be used for workflow
-						</div>
-						<div data-markdown class="fragment current-visible" style="position:absolute">
-							* Nodes represent diffs with respect to each other
-							* Nodes represent entire filesystem layout on their own
-							* Nodes are immutable
-
-							----------------------------------------
-							You can describe nodes with a...
-
-							* **branch**			- a name to track your work
-							* **tag**					- a label, it doesn't move
-							* **commit hash**	- complete history and set of files
-							* **HEAD**				- your current checkout
-							* **$ref^**   		- above are $refs, chain ^ or ~ to go up a branch
-
-							----------------------------------------
-
-							Lets look at how we can use these with commands
-						</div>
-					</section>
-
-					<section>
-						<h3>Mastering branches: Commands</h3>
-						<div data-markdown>
-							Interesting commands with branches
-							```
-							git checkout $branch
-							git reset $ref
-							git rebase $branch
-							git rebase --interactive $branch
-							```
-							----------------------------------------
-							* **Checkout**: context dependent command...
-								1. Either reset unstaged file(s)
-								2. Or switch branches
-							* **Rebase**: Batch move commits and rewrite history
-							* **Reset**: Move branches around arbitarily
-							* **Reflog**: Save my ass! What have I had 'checked out' recently?
-							----------------------------------------
-							Whiteboard time!
-						</div>
-					</section>
-
-					<section data-background-image="images/oops.gif">
-						<div data-markdown>
-							```
-							# NOES!! Undo!!
-							git reflog
-							```
-						</div>
-					</section>
-
-					<section>
-						<h3>Mastering branches: Headless state</h3>
-						<div data-markdown>
-							If you're not on a branch, git puts you in a headless state
-							```
-							git checkout $tag
-							git checkout $commit
-							```
-						</div>
-						<div data-markdown>
-							Trying something like this...
-							```
-							git checkout HEAD^
-							```
-							Results in something like this...
-						</div>
-						<div data-markdown>
-							```
-							You are in 'detached HEAD' state. You can look around, make experimental
-							changes and commit them, and you can discard any commits you make in this
-							state without impacting any branches by performing another checkout.
-
-							If you want to create a new branch to retain commits you create, you may
-							do so (now or later) by using -b with the checkout command again. Example:
-
-							git checkout -b new_branch_name
-
-							HEAD is now at f4b37d8... CSS: Return values should be numbers
-							```
-							Which is git being melodramatic
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Activity: Mastering Branches
+							## Interactive Rebase
+							## Exercise time!
 							1. Navigate to your Jabberwocky repo clone
 							2. Checkout 'master'
 							3. Fix the bug, commit
@@ -871,97 +885,9 @@
 							```
 						</div>
 					</section>
-
-					<section>
-						<h3>Tools suited to personal workflow</h3>
-						<div data-markdown>
-							- Personal workflows...
-								- Isolate and Triage: Context hunting
-								- Work: Mastering branches
-								- **Update, Test: Audit work interactively** <-- you are here
-								- Share: Manage merge conflicts like a pro
-						</div>
-						<img src="images/individual-workflow.svg" height="500" alt="personal workflow">
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Audit work interactively
-							Audit your work interactively with your staging area
-
-							1. When you're ready to commit locally
-							2. When you want to break up a monstor commit
-
-							----------------------------------------
-							### Quick activity
-							Add your own verse to the jabberwocky poem, then run
-							```
-							git add -p
-							```
-							Check what's happened with
-							```
-							git status
-							```
-							Put stuff back with
-							```
-							git reset HEAD
-							```
-						</div>
-					</section>
-
-					<section>
-						<h3>Tools suited to personal workflow</h3>
-						<div data-markdown>
-							- Personal workflows...
-								- Isolate and Triage: Context hunting
-								- Work: Mastering branches
-								- Update, Test: Audit work interactively
-								- **Share: Manage merge conflicts like a pro** <-- you are here
-						</div>
-						<img src="images/individual-workflow.svg" height="500" alt="personal workflow">
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Manage merge conflicts like a pro
-							Source control is about social coding and interactions.
-
-							A conflict should be a conversation. When you see
-							```
-							CONFLICT (content): Merge conflict in jabberwocky.html
-							Automatic merge failed; fix conflicts and then commit the result.
-							```
-							Get info with
-							```
-							git status
-							git blame $file
-							```
-							Markers are usually HEAD and a $ref, wher
-
-							1. HEAD is work of yours
-							2. $ref is the thing you're in conflict with
-
-							```
-							git reflog
-							git merge $ref
-							```
-						</div>
-					</section>
 				</section>
 
 				<section>
-					<section data-markdown>
-						* Getting Started
-						* Personal workflows
-						* **Team workflows** <-- you are here
-						* Release workflows
-						--------------------------------------------------------------------------------
-						## Overview: Team workflows
-						- Quickly setup local, network accessible repos
-						- Working with people who dont enjoy source control
-						- Clean history, rebase verses merge
-					</section>
-
 					<section>
 						<img src="images/share.gif" alt="lion king, throwing simba as a metaphor for sharing">
 					</section>
