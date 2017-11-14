@@ -865,9 +865,42 @@
 						<img src="images/share.gif" alt="lion king, throwing simba as a metaphor for sharing">
 					</section>
 
+					<section data-markdownn>
+						## Share your work
+						Git just tracks content. All history is stored in .git directory, and sharing
+						is just mushing content around in there.
+
+						Clone coppies a remote
+						`git clone $location`
+
+						Location can be...
+
+						1. ssh://[user@]host.xz[:port]/path/to/repo.git/
+						1. git://host.xz[:port]/path/to/repo.git/
+						1. http[s]://host.xz[:port]/path/to/repo.git/
+						1. ftp[s]://host.xz[:port]/path/to/repo.git/
+						1. rsync://host.xz/path/to/repo.git/
+					</section>
+
+					<section data-markdown>
+						To modify remotes...
+						```
+						git remote add $alias $location
+						git remote rm $alias $location
+						```
+					</section>
+
 					<section data-markdown>
 						## Share your work
 						Team Foundation Server
+
+						1. Lets get everyone on this project
+						https://fregroup.visualstudio.com/_git/AO%20Training
+						2. Clone it
+						3. Create a branch
+						4. Make a change, commit and push
+						5. Create a merge request
+						6. Leave a comment on the merge request
 					</section>
 
 					<section data-markdown>
@@ -1037,17 +1070,83 @@
 
 					<section data-markdown>
 						## Working with Upstream
-						.Net core
+						.Net core is on github
+
+						To track bugs, raise issues
+
+						On github, everyone forks
+
+						To push patches upstream, create pull requests
 					</section>
 
 					<section data-markdown>
-						## CI/CD Tricks
-						Branch convention and Hooks
+						## Working with Upstream
+						What's the difference between
+						1. a Merge Request,
+						2. and a Pull Request?
+					</section>
+
+					<section data-markdown>
+						## Working with Upstream
+						Lets do this together!
+						1. Sign up for an account with github
+						2. Go to https://github.com/heymatthew/core
+						3. "Fork" my rep
+						4. Clone your fork using the "Clone or Download" button
+						5. Change README.md
+						6. Commit and Push Changes
+						7. Click "Create pull request"
+					</section>
+
+					<section data-markdown>
+						## CI/CD: Branch and Tag conventions
+
+						Rule of thumb if you want it automated, pick something that'll be picked up by a regular expression.
+
+						For branches, you could merge request master into a branch named production or staging
+					</section>
+
+					<section data-markdown>
+						## CI/CD: Branch and Tag conventions
+						For tags, semver is great http://semver.org/
+
+						Format: MAJOR.MINOR.PATCH, e.g. 1.0.0
+
+						* MAJOR version when you make incompatible API changes,
+						* MINOR version when you add functionality in a backwards-compatible manner, and
+						* PATCH version when you make backwards-compatible bug fixes.
+					</section>
+
+					<section data-markdown>
+						Lets discuss use cases
+					</section>
+
+					<section data-markdown>
+						## CI/CD Tricks: Hooks
+						```
+						git help githooks
+						```
+						Checkout the templates
+						```
+						ls .git/hooks
+						```
+						Exit with non-zero to abort the operation
+					</section>
+
+					<section data-markdown>
+						## CI/CD Tricks: Hooks
+						You can nick other people's scripts, e.g. linting
+
+						https://github.com/okonet/lint-staged
+
+						Or you could use http push to trigger a build
 					</section>
 
 					<section data-markdown>
 						## Sign commits
 						A trust model for git
+
+						We're going to need to install one more thing...
 					</section>
 
 					<section data-markdown>
@@ -1113,6 +1212,7 @@
 					</section>
 
 					<section data-markdown>
+						## Bisect
 						Sometimes it's guess work
 						```
 						git bisect skip
@@ -1125,31 +1225,29 @@
 						```
 					</section>
 
-					<section>
-						<div data-markdown>
-							## Exercise
-							1. Clone the jabberwocky repo, pull tags
-							2. Checkout the changes made with git log
-							3. Use bisect with v1 and v2 tags as good/bad commits
-							4. Find the commit that created the alert
-							```
-							git clone https://github.com/heymatthew/jabberwocky
-							git fetch --tags
-							git log -p
-							git log --stat
-							git bisect start $bad $good
-							```
+					<section data-markdown>
+						## Exercise
+						1. Clone the jabberwocky repo, pull tags
+						2. Checkout the changes made with git log
+						3. Use bisect with v1 and v2 tags as good/bad commits
+						4. Find the commit that created the alert
+						```
+						git clone https://github.com/heymatthew/jabberwocky
+						git fetch --tags
+						git log -p
+						git log --stat
+						git bisect start $bad $good
+						```
 
-							Mark wanted or unwanted behaviour with
-							```
-							git bisect good
-							git bisect bad
-							```
-						</div>
+						Mark wanted or unwanted behaviour with
+						```
+						git bisect good
+						git bisect bad
+						```
 					</section>
 
 					<section data-markdown>
-						## Exercise 2
+						## Tidyup
 						```
 						git bisect reset
 						```
@@ -1183,18 +1281,30 @@
 
 					<section data-markdown>
 						## Revert
-						Reverting a merge commit
+						Reverting a merge commit requires parent
 
 						```
 						git show $merge_commit
-						```
-						```
+
 						commit f830ef9b372222287b0df82dd92a41feccd7eaf7 (HEAD -> master)
 						Merge: 482a1c3 345969e
 						Author: Matthew B. Gray &lt;code@matthew.nz&gt;
+						...
+						```
 						```
 						git revert -m $parent_number
 						```
+						"Reverting a merge commit declares that you will never want the tree
+           	changes brought in by the merge."
+					</section>
+
+					<section data-markdown>
+						## Revert
+						Given the heat is off, to work again on your change you must
+						1. Branch from the merge revert...
+						2. Revert that revert
+						3. Fix the issue
+						4. Merge back when ready
 					</section>
 
 					<section data-markdown>
@@ -1215,34 +1325,6 @@
 				</section>
 
 				<section>
-					<section>
-						<div data-markdown>
-							### Quickly setup local, network accessible repos
-							![](images/dictator-lieutenant-contributors.png)
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Quickly setup local, network accessible repos
-							Git just tracks content. All history is stored in .git directory, and sharing
-							is just mushing content around in there.
-
-							To modify remotes...
-							```
-							git remote add $alias $location
-							git remote rm $alias $location
-							```
-							Location can be...
-
-							1. ssh://[user@]host.xz[:port]/path/to/repo.git/
-							1. git://host.xz[:port]/path/to/repo.git/
-							1. http[s]://host.xz[:port]/path/to/repo.git/
-							1. ftp[s]://host.xz[:port]/path/to/repo.git/
-							1. rsync://host.xz/path/to/repo.git/
-						</div>
-					</section>
-
 					<section>
 						<div data-markdown>
 							### Quickly setup local, network accessible repos
@@ -1268,15 +1350,6 @@
 							git log neighbour/master
 							git diff neighbour/master master
 							```
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Working with people who don't enjoy source control
-							Idea #1: Empower them, let them mange their commits, but manage their merges
-
-							![](images/branches-typical.png)
 						</div>
 					</section>
 
