@@ -31,7 +31,6 @@
 						<p>Slides by Matthew Gray</p>
 						<p>
 							<small>
-								<br>hey@matthew.nz
 								<br>https://matthew.nz
 								<br>https://github.com/heymatthew
 							</small>
@@ -305,7 +304,7 @@
 						## Anatomy of a commit
 						Raw commit
 						```
-						git show
+						git show --raw
 						```
 						```
 						commit d5401a6399234ddfe7bc986a0fe120359505aad5
@@ -828,11 +827,119 @@
 					</section>
 
 					<section data-markdown>
+						## Share your work
+						Team Foundation Server
+					</section>
+
+					<section data-markdown>
+						## Rebase vs Merge
+						An argument for clean history
+
+						`pull` can create merges implicitly
+
+						`pull --rebase` will use a rebase strategy to get your work copied over
+
+						And you can rewrite your history with `--interactive`
+					</section>
+
+					<section data-markdown>
+						## Rebase vs Merge
+						Set up git pull to rebase by default
+						```
+						git config --global branch.rebase true
+						git config --global branch.autosetuprebase always
+						```
+					</section>
+
+					<section data-markdown>
+						## Exercise time!
+						1. Clone jabberwocky repo
+						2. Checkout 'master'
+						3. Delete script tag on line 28
+						4. Commit, call it something like FIXUP
+						5. Interactive rebase onto the tag v1
+						6. Squash your fix with 'Oops' and give it a message.
+
+						```
+						git clone https://github.com/heymatthew/jabberwocky
+						cd jabberwocky
+						git add jabberwocky.html
+						git commit
+						git rebase v1 --interactive
+						git log -p
+						```
+
+						...it's as if the error was never there.
+					</section>
+					<section data-markdown>
+						## Exercise 2
+						Now put it back
+						```
+						git reset origin/master --hard
+						```
+						When would you choose to do this?
+					</section>
+
+					<section data-markdown>
+						## Remotes
+						Lets talk about branches on origin
+					</section>
+
+					<section data-markdown>
+						## Git ignore
+						Don't bother tracking the superfluous
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
 						## Team Workflows 2
 						- Git SVN bridge: Local git, remote svn
 						- Backups and Mirrors: Keep a copy
 						- Changelogs: Share what happened
 						- Databases: Logic vs State, State vs Data
+					</section>
+
+					<section data-markdown>
+						## Git SVN bridge
+						Local git, remote svn
+
+						Have a look at https://filezilla-project.org/sourcecode.php
+
+						Clone with...
+						```
+						git svn clone https://svn.filezilla-project.org/svn/FileZilla3
+						```
+
+						Starts...
+						```
+						Initialized empty Git repository in /Users/mbgray/code/training/freightways/FileZilla3/.git/
+						W: +empty_dir: brances
+						W: +empty_dir: tags
+						W: +empty_dir: trunk
+						r1 = 1cecc4b6b4a907327130da10ca56f049b7e98101 (refs/remotes/git-svn)
+							A	trunk/src/interface/Mainfrm.h
+							A	trunk/src/interface/LocalTreeView.cpp
+							A	trunk/src/interface/RemoteTreeView.cpp
+							A	trunk/src/interface/LocalTreeView.h
+						...
+						```
+					</section>
+
+
+					<section data-markdown>
+						## Backups and Mirrors
+						Keep a copy
+					</section>
+
+					<section data-markdown>
+						## Changelogs
+						Share what happened
+					</section>
+
+					<section data-markdown>
+						## Databases
+						Logic vs State, State vs Data
 					</section>
 				</section>
 
@@ -846,11 +953,18 @@
 					</section>
 
 					<section data-markdown>
-						## Release Workflows 2
-						- Revert: Winding back a change
-						- Strategy: Linear History
-						- Strategy: Merge Forward Releases
-						- Strategy: Microkernel architecture
+						## Working with Upstream
+						.Net core
+					</section>
+
+					<section data-markdown>
+						## CI/CD Tricks
+						Branch convention and Hooks
+					</section>
+
+					<section data-markdown>
+						## Sign commits
+						A trust model for git
 					</section>
 
 					<section data-markdown>
@@ -873,9 +987,10 @@
 
 						Configure git
 						```
-						git config --global user.signingkey F211ED820E36E40355572F883041C906DC7C27F0
-						git config --global commit.pgpsign true
-						git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+						git config --global ...
+						    user.signingkey F211ED820E36E40355572F883041C906DC7C27F0
+						    commit.pgpsign true
+						    gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
 						```
 
 						Commit and sign
@@ -891,46 +1006,98 @@
 					</section>
 
 					<section data-markdown>
-						## Exercise 3
-						Verify signature
+						## Bisect
+						Triage when a big was introduced. To start bisecting...
+						```
+						git bisect start $bad_commit $good_commit
+						```
+						'Unwanted' behaviour?
+						```
+						git bisect bad
+						```
+						'Wanted' behaviour?
+						```
+						git bisect good
+						```
+						Tidy up
+						```
+						git bisect reset
+						```
+					</section>
 
-						git add myfile.txt
-						git commit -S
+					<section data-markdown>
+						Sometimes it's guess work
+						```
+						git bisect skip
+						```
+
+						Sometimes it's complicated to get back to your guess spot
+						```
+						git bisect log > bisect.log
+						git bisect reply bisect.log
+						```
+					</section>
+
+					<section>
+						<div data-markdown>
+							## Exercise
+							1. Clone the jabberwocky repo, pull tags
+							2. Checkout the changes made with git log
+							3. Use bisect with v1 and v2 tags as good/bad commits
+							4. Find the commit that created the alert
+							```
+							git clone https://github.com/heymatthew/jabberwocky
+							git fetch --tags
+							git log -p
+							git log --stat
+							git bisect start $bad $good
+							```
+
+							Mark wanted or unwanted behaviour with
+							```
+							git bisect good
+							git bisect bad
+							```
+						</div>
+					</section>
+
+					<section data-markdown>
+						## Exercise 2
+						```
+						git bisect reset
 						```
 					</section>
 				</section>
 
 				<section>
 					<section data-markdown>
-						TODO https://filezilla-project.org/sourcecode.php
-
-						```
-						git svn clone https://svn.filezilla-project.org/svn/FileZilla3
-						```
-
-						```
-						Initialized empty Git repository in /Users/mbgray/code/training/freightways/FileZilla3/.git/
-						W: +empty_dir: brances
-						W: +empty_dir: tags
-						W: +empty_dir: trunk
-						r1 = 1cecc4b6b4a907327130da10ca56f049b7e98101 (refs/remotes/git-svn)
-							A	trunk/src/interface/Mainfrm.h
-							A	trunk/src/interface/LocalTreeView.cpp
-							A	trunk/src/interface/RemoteTreeView.cpp
-							A	trunk/src/interface/LocalTreeView.h
-						...
-						```
+						## Release Workflows 2
+						- Revert: Winding back a change
+						- Linear Releases: Simple branching
+						- Merge Forward Releases: Release branches
+						- Microkernel architecture: Break up a Monolyth
 					</section>
 
 					<section data-markdown>
-						### Rebase
-						```
-						git config --global branch.rebase true
-						git config --global branch.autosetuprebase always
-						```
-
-						All these settings are storred in **~/.gitconfig**
+						## Revert
+						Winding back a change
 					</section>
+
+					<section data-markdown>
+						## Linear Releases
+						Simple branching
+					</section>
+
+					<section data-markdown>
+						## Merge Forward Releases
+						Release branches
+					</section>
+
+					<section data-markdown>
+						## Microkernel architecture
+						Breaking up a Monolyth
+					</section>
+
 				</section>
 
 				<section>
@@ -964,35 +1131,6 @@
 						HEAD is now at f4b37d8... CSS: Return values should be numbers
 						```
 						Which is git being melodramatic
-					</section>
-
-					<section>
-						<div data-markdown>
-							## Interactive Rebase
-							## Exercise time!
-							1. Navigate to your Jabberwocky repo clone
-							2. Checkout 'master'
-							3. Fix the bug, commit
-							4. Interactive rebase onto the tag v1
-							5. Squash your fix with 'Oops' and give it a message.
-
-							```
-							cd $jabberwocky_dir
-							vim jabberwocky.html
-							git add jabberwocky.html
-							git commit
-							git log
-							git rebase $ref --interactive
-							git log -p
-							```
-
-							...it's as if the error was never there.
-
-							Now put it back
-							```
-							git reset origin/master --hard
-							```
-						</div>
 					</section>
 				</section>
 
@@ -1137,82 +1275,6 @@
 
 					<section data-markdown>
 						# Reviewing between refs
-					</section>
-
-					<section> <!-- Git bisect -->
-						<div data-markdown>
-							### Context hunting / Isolate, Triage
-							- Personal workflows...
-								- Isolate and Triage: Context hunting
-									* Log
-									* Bisect <-- you are here
-									* Blame
-									* Pickaxe
-							----------------------------------------
-						</div>
-						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							To start bisecting, you use these commands
-							```
-							git bisect start $bad_commit $good_commit
-							```
-							'Unwanted' behaviour?
-							```
-							git bisect bad
-							```
-							'Wanted' behaviour?
-							```
-							git bisect good
-							```
-							Tidy up
-							```
-							git bisect reset
-							```
-						</div>
-						<div data-markdown class="fragment current-visible" style="position:absolute;">
-							Sometimes it's guess work
-							```
-							git bisect skip
-							```
-
-							Sometimes it's complicated to get back to your guess spot
-							```
-							git bisect log > bisect.log
-							git bisect reply bisect.log
-							```
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Activity: Testing bisect
-							1. Clone the jabberwocky repo, pull tags
-							2. Checkout the changes made with git log
-							3. Use bisect with v1 and v2 tags as good/bad commits
-							4. find the commit that broke the page
-							```
-							git clone https://github.com/heymatthew/jabberwocky
-							git fetch --tags
-							git log -p
-							git log --stat
-							git bisect start $bad $good
-							```
-							Exhibits wanted behaviour?
-							```
-							git bisect good
-							```
-							Exhibits unwanted behaviour?
-							```
-							git bisect bad
-							```
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown> Tidy up with
-							```
-							git bisect reset
-							```
-						</div>
 					</section>
 
 					<section data-markdown>
@@ -1401,6 +1463,10 @@
 							<a href="http://www.youtube.com/watch?v=1ffBJ4sVUb4">Git for ages 4 and up</a>
 						</li>
 						<li>
+							James Mckay's post "<a href="https://jamesmckay.net/2016/02/signing-git-commits-with-gpg-on-windows">
+								Signing Git Commits on Windows
+							</a>
+						<li>
 							man git-workflows
 						</li>
 					</ul>
@@ -1422,14 +1488,14 @@
 					)
 
 					![qr for quick access](images/github-qr-link.png)
-
-					Feedback? Corrections? Questions?
-
-					Please leave an issue against the course github page.
 				</section>
 
 				<section data-markdown>
-					Big finish
+					Feedback? Corrections? Questions?  
+
+					Please leave an issue against the course github page.
+
+					Hope you enjoyed the course!
 
 					![Boom](images/big-end.gif)
 				</section>
