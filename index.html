@@ -983,7 +983,6 @@
 
 					<section data-markdown>
 						## Exercise 2
-						Now put it back
 						```
 						git reset origin/master --hard
 						```
@@ -1085,6 +1084,17 @@
 					<section data-markdown>
 						## Databases
 						Logic vs State, State vs Data
+
+						Git doesn't care about non-filesystem entities
+
+						Database patching is important to get right
+
+						----------------------------------------
+
+						You can either use convetion, or process to manage this
+
+						1. Numeric patch - set 1+$current in your filename
+						2. Automatic numeric patch - use a merge script on release
 					</section>
 				</section>
 
@@ -1287,6 +1297,22 @@
 					</section>
 
 					<section data-markdown>
+						## Exercise 2
+						Try the following command
+						```
+						git checkout origin/master db
+						```
+						What was it's effect?
+
+						When would you choose to do this?
+
+						How would you use this to get at patches from where you jumped?
+						```
+						git bisect log
+						```
+					</section>
+
+					<section data-markdown>
 						## Tidyup
 						```
 						git bisect reset
@@ -1406,78 +1432,36 @@
 					<section data-markdown>
 						## Microkernel architecture
 						Breaking up a Monolyth
+						* Coordination of components moved from branches to package management
+						* Libraries can be worked on simultaniously
+						* Release scripts become a bit trickier
+						* Can have different policies per repo
+						* Good for scale
 					</section>
 
-				</section>
-
-				<section>
 					<section data-markdown>
-						Linear History (SVN-ish)
+						![](images/basic-branching-2.png)
+						![](images/release-branches.png)
+					</section>
 
-						Merge Forward Releases
-						- Branch with scoped work
-						- Work on release branch till ready
-						- Tag for release
-
-						Feature releases with linear history
-
-						Feature Based Releases
-						- Branch features from Production
-						- Work till ready, merge releases back into your branches
-						- Create release candidates by octo merging heads
-
-						Microkernel Architecture
+					<section data-markdown>
+						## Microkernel Architecture
+						Migration steps
 						- Either break your repository up and use package dependencies to manage code
-							- git mv $file $folder
-						- Or break your repository up using folders, and manage your dependencies with something like docker tags
-						  - git tag
-							- git filter-branch OR git mv $file $folder
-							- great for controlling commit access and security requirements
-							- e.g. banking APIs
+						```
+						git mv $source $destination
+						```
+						- Or break your repository up using folders
+						- Manage your dependencies with docker tags
+						```
+						git tag
+						git filter-branch OR git mv $file $folder
+						```
 					</section>
 
 					<section data-markdown>
-						### Database patching on branches
-						Git doesn't care about non-filesystem entities
-
-						Database patching is important to get right
-
-						----------------------------------------
-
-						You can either use convetion, or process to manage this
-
-						1. Numeric patch - set 1+$current in your filename
-						2. Automatic numeric patch - use a merge script on release
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Strategies for dealing with release requirements
-							The battle of flexability vs simplicity
-
-							----------------------------------------
-
-							* Track changes, find bugs and release when you can
-							* Working on releases in parallel
-							* Construct release candidates based on feature sets
-							* Release partial applications (modular)
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Release requirements: Microkernel architecture
-							* Difficulty is abstracted to the application
-							* Modules of application can be worked on at the same time
-							* Release would package together multiple pieces of work
-
-							![](images/basic-branching-2.png)
-							![](images/release-branches.png)
-						</div>
-					</section>
-
-					<section>
-						<h1>Each has it's costs, choose the one that works best</h1>
+						# Each has it's costs!
+						Choose the one that works best for your usecase
 					</section>
 				</section>
 
@@ -1500,7 +1484,6 @@
 							man git-workflows
 						</li>
 					</ul>
-					<hr>
 					<h2>Attribution</h2>
 					<ul>
 						<li><a href="http://git-scm.com">git-scm.com</a> for some images</li>
