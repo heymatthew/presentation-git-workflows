@@ -684,7 +684,6 @@
 						```
 						git diff
 						```
-						
 						Review modifications after git add with
 						```
 						git diff --staged
@@ -777,16 +776,126 @@
 						Get info with
 						```
 						git status
+						git diff
 						git blame $file
 						```
-						Markers are usually HEAD and a $ref, wher
+					</section>
+
+					<section data-markdown>
+						## Merge stuff, break stuff
+						Markers are usually HEAD and a $ref, where
 
 						1. HEAD is work of yours
 						2. $ref is the thing you're in conflict with
 
+						Lets try simulate a merge conflict and get here...
+
 						```
-						git reflog
-						git merge $ref
+						git status
+						git diff
+						git blame $file
+						```
+					</section>
+
+					<section data-markdown>
+						## Exercise time!
+						In your jquery repo, checkout master and merge in `origin/killphp`
+						```
+						git merge origin/killphp
+						git status
+						git diff
+						git blame $file
+						```
+
+						What files are in conflict?
+
+						What authors need to talk?
+
+						How many commits is origin/killphp from master?
+						```
+						git log ref1...ref2
+						```
+					</section>
+				</section>
+
+				<section data-markdown>
+					<section data-markdown>
+						## Team Workflows 1
+						- Share your work: Team Foundation Server
+						- Rebase vs Merge: An argument for clean history
+						- Remotes: Lets talk about branches on origin
+						- Git ignore: Don't bother tracking the superfluous
+					</section>
+
+					<section data-markdown>
+						## Team Workflows 2
+						- Git SVN bridge: Local git, remote svn
+						- Backups and Mirrors: Keep a copy
+						- Changelogs: Share what happened
+						- Databases: Logic vs State, State vs Data
+					</section>
+				</section>
+
+				<section data-markdown>
+					<section data-markdown>
+						## Release Workflows 1
+						- Working with Upstream: .Net core
+						- CI/CD Tricks: Branch convention and Hooks
+						- Sign commits: Using a trust model for git
+						- Bisect: Triage when a big was introduced
+					</section>
+
+					<section data-markdown>
+						## Release Workflows 2
+						- Revert: Winding back a change
+						- Strategy: Linear History
+						- Strategy: Merge Forward Releases
+						- Strategy: Microkernel architecture
+					</section>
+
+					<section data-markdown>
+						## Exercise
+						From an admin console...
+						```
+						choco install gpg4win
+						```
+
+						Open Kleopatra, File > New Key Pair...
+
+						Choose "make a backup of your new key pair"
+
+						Put it on your desktop "backup.gpg"
+					</section>
+
+					<section data-markdown>
+						## Exercise 2
+						From Kleopatera, copy key fingerprint to clipboard
+
+						Configure git
+						```
+						git config --global user.signingkey F211ED820E36E40355572F883041C906DC7C27F0
+						git config --global commit.pgpsign true
+						git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+						```
+
+						Commit and sign
+						```
+						git add myfile.txt
+						git commit -S
+						```
+
+						Verify
+						```
+						git log --show-signature
+						```
+					</section>
+
+					<section data-markdown>
+						## Exercise 3
+						Verify signature
+
+						git add myfile.txt
+						git commit -S
 						```
 					</section>
 				</section>
@@ -901,7 +1010,6 @@
 						Comparing 2 local repos, how remotes show up
 						- Create a branch
 						- Push and track a branch
-						- 
 					</section>
 
 					<section>
