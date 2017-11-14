@@ -1332,7 +1332,8 @@
 						...
 						```
 						```
-						git revert -m $parent_number
+						git revert -m $parent_number REF
+						git revert -m 1 f830ef9b372222287b0df82dd92a41feccd7eaf7
 						```
 						"Reverting a merge commit declares that you will never want the tree
            	changes brought in by the merge."
@@ -1363,14 +1364,43 @@
 							mergeoptions = --no-ff
 						```
 					</section>
+
 					<section data-markdown>
 						## Linear Releases
 						Simple branching
+						- Work on master
+						- Branch at release time
+						- Cherry pick or merge to master on hotfixes
+					</section>
+
+					<section data-markdown>
+						![Hotfix](images/basic-branching-1.png)
+						![Hotfix merge forward](images/basic-branching-2.png)
+					</section>
+
+					<section data-markdown>
+						## Linear Releases with Feature Branches
+						Remixed SVN-esk workflow
+						- Branch from production
+						- Work till test complete
+						- Merge to master
+						- Branch at release time
+						- Merge to release branch for hotfixes
+						- Merge release branch into master on hotfix release
 					</section>
 
 					<section data-markdown>
 						## Merge Forward Releases
-						Release branches
+						* Branch per release
+						* Commit to your release
+						* Tag when ready to push to an env
+						* Hotfixes end up on the relelease branch
+						* Merge forward
+						* Can work on upstream while downstream is still going
+					</section>
+
+					<section data-markdown>
+						![](images/release-branches.png)
 					</section>
 
 					<section data-markdown>
@@ -1381,11 +1411,8 @@
 				</section>
 
 				<section>
-					<section>
+					<section data-markdown>
 						Linear History (SVN-ish)
-						- Work on master
-						- Branch at release time
-						- Cherry pick to master on patch releases
 
 						Merge Forward Releases
 						- Branch with scoped work
@@ -1393,12 +1420,6 @@
 						- Tag for release
 
 						Feature releases with linear history
-						- Branch from production
-						- Work till test complete
-						- Merge to master
-						- Branch at release time
-						- Merge to release branch for hotfixes
-						- Merge release branch into master on hotfix release
 
 						Feature Based Releases
 						- Branch features from Production
@@ -1440,59 +1461,6 @@
 							* Working on releases in parallel
 							* Construct release candidates based on feature sets
 							* Release partial applications (modular)
-						</div>
-					</section>
-
-					<section data-background-image="images/personal-workflows.gif">
-						<h3>Release all the things!</h3>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Release requirements: Linear history
-							* Simple
-							* Track changes, find bugs and release when you can
-							* Easy to bring new devs on board
-
-							![](images/basic-branching-1.png)
-							![](images/basic-branching-2.png)
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Release requirements: Merge forward releases
-							* Fairly simple
-							* Work on multiple releases at the same time
-							* Can work on upstream while downstream is still going
-
-							![](images/release-branches.png)
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Release requirements: Feature releases
-							* Every piece of work is a feature
-							* Features are octo-merged into a release candidate
-							* Need to track production somehow
-							* Cannot release 'backwards'
-
-							![](images/feature-releases-1.png)
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Feature releases... omg
-							![](images/feature-releases-2.png)
-						</div>
-					</section>
-
-					<section>
-						<div data-markdown>
-							### Feature releases... more woah
-							![](images/feature-releases-3.png)
 						</div>
 					</section>
 
