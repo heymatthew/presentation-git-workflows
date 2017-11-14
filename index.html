@@ -331,7 +331,7 @@
 						* **tag**					- a label, it doesn't move
 						* **commit hash**	- complete history and set of files
 						* **HEAD**				- your current checkout
-						* **$ref^**   		- above are $refs, chain ^ or ~ to go up a branch
+						* **$ref~**   		- above are $refs, chain ^ or ~ to go up a branch
 					</section>
 
 					<section data-markdown>
@@ -543,6 +543,7 @@
 						* Log - Show commit logs
 						* Pickaxe - Search commit diffs for changes
 						* Blame - revision and author for lines of a file
+						* Headless Checkout - Options for work without tracking
 					</section>
 
 					<section data-markdown>
@@ -600,6 +601,40 @@
 						```
 					</section>
 
+					<section data-markdown>
+						## Headless Checkout
+						Options for work without tracking
+
+						If you're not on a branch, git puts you in a headless state
+						```
+						git checkout $tag
+						git checkout $commit
+						git checkout $hash
+						```
+					</section>
+
+					<section data-markdown>
+						## Headless Checkout
+						Trying something like this...
+						```
+						git checkout HEAD~
+						```
+						Results in something like this...
+
+						```
+						You are in 'detached HEAD' state. You can look around, make experimental
+						changes and commit them, and you can discard any commits you make in this
+						state without impacting any branches by performing another checkout.
+
+						If you want to create a new branch to retain commits you create, you may
+						do so (now or later) by using -b with the checkout command again. Example:
+
+						git checkout -b new_branch_name
+
+						HEAD is now at f4b37d8... CSS: Return values should be numbers
+						```
+						Which is git being melodramatic
+					</section>
 					<section data-markdown>
 						## Exercise time!
 						1. Clone jquery repo
@@ -1140,40 +1175,6 @@
 						Breaking up a Monolyth
 					</section>
 
-				</section>
-
-				<section>
-					<section data-markdown>
-						Headless state
-
-						If you're not on a branch, git puts you in a headless state
-						```
-						git checkout $tag
-						git checkout $commit
-						```
-					</section>
-
-					<section data-markdown>
-						Trying something like this...
-						```
-						git checkout HEAD^
-						```
-						Results in something like this...
-
-						```
-						You are in 'detached HEAD' state. You can look around, make experimental
-						changes and commit them, and you can discard any commits you make in this
-						state without impacting any branches by performing another checkout.
-
-						If you want to create a new branch to retain commits you create, you may
-						do so (now or later) by using -b with the checkout command again. Example:
-
-						git checkout -b new_branch_name
-
-						HEAD is now at f4b37d8... CSS: Return values should be numbers
-						```
-						Which is git being melodramatic
-					</section>
 				</section>
 
 				<section>
