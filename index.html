@@ -875,9 +875,15 @@
 						An argument for clean history
 
 						`pull` can create merges implicitly
+					</section>
 
+					<section data-markdown>
+						## Rebase vs Merge
 						`pull --rebase` will use a rebase strategy to get your work copied over
+					</section>
 
+					<section data-markdown>
+						## Rebase vs Merge
 						And you can rewrite your history with `--interactive`
 					</section>
 
@@ -1162,6 +1168,33 @@
 					<section data-markdown>
 						## Revert
 						Winding back a change
+
+						Basic form
+						```
+						git revert $ref
+						```
+						Combine several together
+						```
+						git revert $ref1 -n
+						git revert $ref2 -n
+						git commit
+						```
+					</section>
+
+					<section data-markdown>
+						## Revert
+						Reverting a merge commit
+
+						```
+						git show $merge_commit
+						```
+						```
+						commit f830ef9b372222287b0df82dd92a41feccd7eaf7 (HEAD -> master)
+						Merge: 482a1c3 345969e
+						Author: Matthew B. Gray <code@matthew.nz>
+						```
+						git revert -m $parent_number
+						```
 					</section>
 
 					<section data-markdown>
