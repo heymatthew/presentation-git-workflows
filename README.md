@@ -1,6 +1,5 @@
-## Git Advanced: Workflows for Developers, Teams and Release Management
-Slides for Git Advanced, based on [Reveal JS](http://lab.hakim.se/reveal-js/).
+## Git Workflows for Developers, Teams and Release Management
 
-Peruse the slides here: [https://heymatthew.github.io/advanced-git-slides][1]
+Peruse the slides at [heymatthew.github.io/presentation-git-workflows](https://heymatthew.github.io/presentation-git-workflows/#/)
 
-[1]: https://heymatthew.github.io/advanced-git-slides/#/
+Slides based on [Reveal JS](http://lab.hakim.se/reveal-js/).
